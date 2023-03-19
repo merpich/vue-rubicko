@@ -4,4 +4,4 @@ const categoryShema = new mongoose.Schema({
 	title: { type: String, required: true }
 })
 
-export default mongoose.Schema('Category', categoryShema)
+export default mongoose.model('Category', categoryShema)
