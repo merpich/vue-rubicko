@@ -152,3 +152,32 @@ export const deletePost = async (req, res) => {
 		})
 	}
 }
+
+export const likePost = async (req, res) => {
+	try {
+		const post = await PostModel.findOne({ _id: req.params.id })
+
+		if (post.liked.length > 0) {
+			post.liked.forEach(userId => {
+				if (userId === req.userId) {
+					post.liked = post.liked.filter(userId => userId !== req.userId)
+				} else {
+					post.liked.push(req.userId)
+				}
+			})
+		} else {
+			post.liked.push(req.userId)
+		}
+
+		post.save()
+
+		res.status(200).json({
+			success: true
+		})
+	} catch (error) {
+		console.log(error)
+		res.status(500).json({
+			message: 'Не удалось оценить статью'
+		})
+	}
+}

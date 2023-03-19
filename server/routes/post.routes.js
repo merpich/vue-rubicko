@@ -31,4 +31,10 @@ router.route('/:id')
 		PostController.deletePost
 	)
 
+router.route('/like/:id')
+	.patch(
+		checkAuth,
+		PostController.likePost
+	)
+
 export default router
