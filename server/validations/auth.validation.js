@@ -12,8 +12,10 @@ export const registerValidation = [
 		if (user) return Promise.reject('Никнейм уже занят')
 	}),
 
-	body('fullName').optional(),
-	body('userBio', 'Укажите данные о себе')
+	body('fullName', 'Не более 64 символов')
+		.optional().isLength({ max: 64 }),
+
+	body('userBio', 'Не более 256 символов')
 		.optional().isLength({ max: 256 }),
 
 	body('email', 'Неверный формат почты').isEmail().custom(async value => {

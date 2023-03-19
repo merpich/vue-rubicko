@@ -1,9 +1,9 @@
 import { body } from 'express-validator'
 
 export const updateValidation = [
-	body('fullName', 'Не больше 64 символов')
+	body('fullName', 'Не более 64 символов')
 		.optional().isLength({ max: 64 }),
 
-	body('userBio', 'Не больше 256 символов')
+	body('userBio', 'Не более 256 символов')
 		.optional().isLength({ max: 256 })
 ]
