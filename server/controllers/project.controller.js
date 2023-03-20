@@ -1,31 +1,26 @@
 import ProjectModel from '../models/project.model.js'
 
-export const getProjects = async (req, res) => {
-	try {
-		const projects = await ProjectModel.find({ userId: req.params.userid })
-
-		res.status(200).json(projects)
-	} catch (error) {
-		console.log(error)
-		res.status(500).json({
-			message: 'Не удалось получить проекты'
-		})
-	}
-}
-
 export const getProject = async (req, res) => {
 	try {
-		const project = await ProjectModel
-			.findOne({ _id: req.params.id })
-			.populate('userId').exec()
+		let project = null
 
-		if (!project) {
+		if (req.query.user) {
+			project = await ProjectModel
+				.find({ userId: req.query.user })
+				.populate('userId').exec()
+		} else if (req.params.id) {
+			project = await ProjectModel
+				.findOne({ _id: req.params.id })
+				.populate('userId').exec()
+		} else {
 			return res.status(404).json({
 				message: 'Проект не найден'
 			})
 		}
 
-		res.status(200).json(project)
+		const projectData = JSON.parse(JSON.stringify(project))
+
+		res.status(200).json(projectData)
 	} catch (error) {
 		console.log(error)
 		res.status(500).json({
@@ -54,11 +49,19 @@ export const createProject = async (req, res) => {
 
 export const updateProject = async (req, res) => {
 	try {
-		await ProjectModel.updateOne({
+		const project = await ProjectModel.findOne({
 			_id: req.params.id
-		}, {
-			...req.body
 		})
+
+		if (!project) {
+			return res.status(404).json({
+				message: 'Проект не найден'
+			})
+		}
+
+		Object.assign(project, req.body)
+
+		project.save()
 
 		res.status(200).json({
 			success: true
@@ -73,7 +76,17 @@ export const updateProject = async (req, res) => {
 
 export const deleteProject = async (req, res) => {
 	try {
-		await ProjectModel.deleteOne({ _id: req.params.id })
+		const project = await ProjectModel.findOne({
+			_id: req.params.id
+		})
+
+		if (!project) {
+			return res.status(404).json({
+				message: 'Проект не найден'
+			})
+		}
+
+		project.deleteOne()
 
 		res.status(200).json({
 			success: true
@@ -88,7 +101,15 @@ export const deleteProject = async (req, res) => {
 
 export const likeProject = async (req, res) => {
 	try {
-		const project = await ProjectModel.findOne({ _id: req.params.id })
+		const project = await ProjectModel.findOne({
+			_id: req.params.id
+		})
+
+		if (!project) {
+			return res.status(404).json({
+				message: 'Проект не найден'
+			})
+		}
 
 		if (project.liked.length > 0) {
 			project.liked.forEach(userId => {
