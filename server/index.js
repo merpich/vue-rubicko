@@ -3,7 +3,7 @@ import cors from 'cors'
 import * as dotenv from 'dotenv'
 
 import { listener, mongo } from './services/app.service.js'
-import { AuthRoutes, UserRoutes, PostRoutes } from './routes/app.routes.js'
+import { AuthRoutes, UserRoutes, PostRoutes, ProjectRoutes } from './routes/app.routes.js'
 
 
 /**
@@ -40,3 +40,4 @@ app.use(express.json())
 app.use('/', AuthRoutes)
 app.use('/user', UserRoutes)
 app.use('/post', PostRoutes)
+app.use('/project', ProjectRoutes)
