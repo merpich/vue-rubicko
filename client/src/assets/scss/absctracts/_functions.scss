@@ -1,0 +1,11 @@
+@function prc($valueOne, $valueTwo) {
+	@return ($valueOne : $valueTwo) * 100%;
+}
+
+@function rem($value) {
+	@return ($value : 16) + rem;
+}
+
+@function em($value) {
+	@return ($value : 16) + rem;
+}

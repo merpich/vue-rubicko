@@ -1,0 +1,46 @@
+:root {
+	// Colors
+	--color-black: #2b2c34;
+	--color-white: #ffffff;
+	--color-grey: #f2f4f6;
+	--color-grey-light: #dddddd;
+	--color-grey-dark: #23242B;
+	--color-red: #ff5470;
+	--color-green: #00ebc7;
+	--color-blue: #00214d;
+	--color-yellow: #fde24f;
+
+	// Font sizes
+	--fz-xs: 0.75rem;
+	--fz-s: 0.875rem;
+	--fz-m: 1rem;
+	--fz-l: 1.25rem;
+	--fz-xl: 1.5rem;
+
+	// Gutters
+	--gutter-xs: 0.25rem;
+	--gutter-s: 0.5rem;
+	--gutter-m: 1rem;
+	--gutter-l: 2rem;
+	--gutter-xl: 3rem;
+}
+
+.theme-light {
+	// Colors for components
+	--bgc-primary: var(--color-grey);
+	--bgc-secondary: var(--color-black);
+	--bgc-component: var(--color-white);
+
+	// Colors for typography
+	--fc-primary: var(--color-black);
+	--fc-secondary: var(--color-white);
+	--fc-link: var(--color-blue);
+
+	// Other colors
+	--c-success: var(--color-green);
+	--c-danger: var(--color-red);
+	--c-alert: var(--color-yellow);
+
+	// Borders
+	--b-primary: 0.0625rem solid var(--color-grey-light);
+}

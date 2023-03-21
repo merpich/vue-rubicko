@@ -1,0 +1,13 @@
+@mixin mediaWidth($minmax, $value) {
+	$size: ($value / 16) + rem;
+	@media (#{$minmax}-width: $size) {
+		@content;
+	}
+}
+
+@mixin mediaHeight($minmax, $value) {
+	$size: ($value / 16) + rem;
+	@media (#{$minmax}-height: $size) {
+		@content;
+	}
+}
