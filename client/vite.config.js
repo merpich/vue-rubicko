@@ -13,7 +13,10 @@ export default defineConfig({
 	css: {
 		preprocessorOptions: {
 			scss: {
-				additionalData: `@import "@/assets/scss/main.scss";`,
+				additionalData: `
+					@import "@/assets/scss/absctracts/_mixins.scss";
+					@import "@/assets/scss/absctracts/_functions.scss";
+				`
 			},
 		},
 	},
