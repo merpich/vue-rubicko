@@ -1,8 +1,12 @@
-@import './base/normalize';
-@import './base/typography';
+// @import './base/normalize';
+// @import './base/typography';
 
-@import './absctracts/variables';
-@import './absctracts/functions';
-@import './absctracts/mixins';
+// @import './absctracts/variables';
+// @import './absctracts/functions';
+// @import './absctracts/mixins';
 
-@import './layout/global';
+// @import './layout/global';
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;

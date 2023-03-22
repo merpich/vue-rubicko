@@ -1,17 +1,9 @@
 <script setup>
 	import TheLogin from '@/components/landing/TheLogin.vue'
-	import TheRegister from '@/components/landing/TheRegister.vue'
 </script>
 
 <template>
-	<main class="content">
-		<TheLogin />
-		<TheRegister />
-	</main>
+	<div class="content">
+		<h1 class="bg-teal-500">Hello</h1>
+	</div>
 </template>
-
-<style lang="scss" scoped>
-	.content {
-		height: 100%;
-	}
-</style>
