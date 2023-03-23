@@ -1,5 +1,5 @@
 <script setup>
-	import TheLogin from '@/components/landing/TheLogin.vue'
+
 </script>
 
 <template>
