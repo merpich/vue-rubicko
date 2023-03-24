@@ -1,11 +1,13 @@
-// @import './base/normalize';
-// @import './base/typography';
-
-// @import './absctracts/functions';
-// @import './absctracts/mixins';
-
-// @import './layout/global';
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+html, body, #app {
+	@apply h-full;
+}
+
+@layer components {
+	.container {
+		@apply max-w-[80rem]
+	}
+}
