@@ -4,8 +4,14 @@ import { loadLayoutMiddleware } from './middlewares/loadLayot.middleware'
 const routes = [
 	{
 		path: '/',
-		name: 'landing',
-		component: () => import('@/views/LandingView.vue')
+		name: 'login',
+		component: () => import('@/views/LoginView.vue')
+	},
+
+	{
+		path: '/register',
+		name: 'register',
+		component: () => import('@/views/RegisterView.vue')
 	}
 ]
 
