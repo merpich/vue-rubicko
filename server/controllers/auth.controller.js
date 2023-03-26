@@ -8,17 +8,17 @@ export const loginUser = async (req, res) => {
 		const user = await UserModel.findOne({ email: req.body.email })
 
 		if (!user) {
-			return res.status(403).json({
-				message: 'Неверная электронная почта или пароль'
-			})
+			return res.status(403).json([
+				{ msg: 'Неверная электронная почта или пароль' }
+			])
 		}
 
 		const isValidPass = await bcrypt.compare(req.body.password, user._doc.passwordHash)
 
 		if (!isValidPass) {
-			return res.status(403).json({
-				message: 'Неверная электронная почта или пароль'
-			})
+			return res.status(403).json([
+				{ msg: 'Неверная электронная почта или пароль' }
+			])
 		}
 
 		const token = jwt.sign({
@@ -35,9 +35,9 @@ export const loginUser = async (req, res) => {
 		})
 	} catch (error) {
 		console.log(error)
-		res.status(500).json({
-			message: 'Не удалось авторизоваться'
-		})
+		res.status(500).json([
+			{ msg: 'Не удалось авторизоваться' }
+		])
 	}
 }
 
