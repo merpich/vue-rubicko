@@ -1,0 +1,11 @@
+.app-gap {
+	&-intro {
+		@apply gap-4 md:gap-8;
+	}
+}
+
+.app-gutter {
+	&-intro {
+		@apply p-4 sm:p-8 -mx-3 sm:-mx-0;
+	}
+}
