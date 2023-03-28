@@ -47,9 +47,7 @@ export const registerUser = async (req, res) => {
 		const password = await bcrypt.hash(req.body.password, salt)
 
 		const document = new UserModel({
-			fullName: req.body.fullName ? req.body.fullName : null,
 			userName: req.body.userName.toLowerCase(),
-			userBio: req.body.userBio ? req.body.userBio : null,
 			avatarUrl: null,
 			email: req.body.email,
 			passwordHash: password
@@ -71,8 +69,8 @@ export const registerUser = async (req, res) => {
 		})
 	} catch (error) {
 		console.log(error)
-		res.status(500).json({
-			message: 'Не удалось зарегестрировать пользователя'
-		})
+		res.status(500).json([
+			{ msg: 'Не удалось зарегестрировать пользователя' }
+		])
 	}
 }
