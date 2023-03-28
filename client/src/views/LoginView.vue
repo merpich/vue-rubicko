@@ -1,13 +1,13 @@
 <script setup>
-	import TheIntro from '@/components/auth/TheIntro.vue'
-	import TheLogin from '@/components/auth/TheLogin.vue'
+	import TheLoginIntro from '@/components/login/TheLoginIntro.vue'
+	import TheLoginForm from '@/components/login/TheLoginForm.vue'
 </script>
 
 <template>
 	<main class="app-intro">
 		<section class="app-container-login">
-			<TheIntro />
-			<TheLogin />
+			<TheLoginIntro />
+			<TheLoginForm />
 		</section>
 	</main>
 </template>
