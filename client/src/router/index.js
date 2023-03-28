@@ -1,4 +1,5 @@
 import { createRouter, createWebHistory } from 'vue-router'
+import { checkAuthMiddleware } from './middlewares/checkAuth.middleware'
 import { loadLayoutMiddleware } from './middlewares/loadLayot.middleware'
 
 const routes = [
@@ -17,7 +18,10 @@ const routes = [
 	{
 		path: '/:id',
 		name: 'profile',
-		component: () => import('@/views/ProfileView.vue')
+		component: () => import('@/views/ProfileView.vue'),
+		meta: {
+			requiredAuth: true
+		}
 	}
 ]
 
@@ -26,6 +30,7 @@ const router = createRouter({
 	routes
 })
 
+router.beforeEach(checkAuthMiddleware)
 router.beforeEach(loadLayoutMiddleware)
 
 export default router
