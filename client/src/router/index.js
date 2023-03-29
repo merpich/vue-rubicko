@@ -20,7 +20,8 @@ const routes = [
 		name: 'profile',
 		component: () => import('@/views/ProfileView.vue'),
 		meta: {
-			requiredAuth: true
+			requiredAuth: true,
+			layout: 'AppLayoutDefault'
 		}
 	}
 ]
