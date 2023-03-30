@@ -6,8 +6,9 @@
 
 .app-container {
 	@apply container;
+	@apply grid md:grid-cols-[2fr_10fr] items-start md:gap-8;
 	&-login {
-		@apply app-container;
+		@apply container;
 		@apply grid md:grid-cols-2 items-start gap-8 md:gap-16;
 	}
 }

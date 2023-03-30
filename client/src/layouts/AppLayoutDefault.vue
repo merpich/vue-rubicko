@@ -5,7 +5,7 @@
 
 <template>
 	<TheHeader />
-	<div class="grid">
+	<div class="app-container py-20">
 		<TheSidebar />
 		<slot></slot>
 	</div>

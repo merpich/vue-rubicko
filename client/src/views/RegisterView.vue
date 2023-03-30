@@ -4,7 +4,7 @@
 
 <template>
 	<main class="app-intro">
-		<div class="app-container">
+		<div class="app-container-intro">
 			<section class="max-w-[40rem] mx-auto">
 				<TheRegisterForm />
 			</section>
