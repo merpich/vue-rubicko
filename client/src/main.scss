@@ -6,6 +6,18 @@
 	html, body, #app {
 		@apply h-full;
 	}
+
+	::-webkit-scrollbar {
+		@apply w-2;
+	}
+
+	::-webkit-scrollbar-track {
+		@apply bg-slate-600;
+	}
+
+	::-webkit-scrollbar-thumb {
+		@apply bg-green-500;
+	}
 }
 
 @layer components {
@@ -13,9 +25,3 @@
 		@apply max-w-[80rem];
 	}
 }
-
-@import './components/layouts';
-@import './components/gutters';
-@import './components/base';
-@import './components/forms';
-@import './components/scrollbar';

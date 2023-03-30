@@ -1,13 +1,20 @@
 <script setup>
-	import TheLoginIntro from '@/components/login/TheLoginIntro.vue'
-	import TheLoginForm from '@/components/login/TheLoginForm.vue'
+	import TheIntro from '@/components/intro/TheIntro.vue'
+	import TheIntroWelcome from '@/components/intro/TheIntroWelcome.vue'
+	import TheIntroLogin from '@/components/intro/TheIntroLogin.vue'
 </script>
 
 <template>
-	<main class="app-intro">
-		<section class="app-container-login">
-			<TheLoginIntro />
-			<TheLoginForm />
+	<TheIntro>
+		<section :class="$style['app-container']">
+			<TheIntroWelcome />
+			<TheIntroLogin />
 		</section>
-	</main>
+	</TheIntro>
 </template>
+
+<style module>
+	.app-container {
+		@apply container grid md:grid-cols-2 items-start gap-8 md:gap-16;
+	}
+</style>

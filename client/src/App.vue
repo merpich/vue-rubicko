@@ -1,4 +1,5 @@
 <script setup>
+	import { RouterView } from 'vue-router'
 	import AppLayout from '@/layouts/AppLayout.vue'
 </script>
 
@@ -9,5 +10,5 @@
 </template>
 
 <style lang="scss">
-	@import '@/assets/scss/main.scss';
+	@import '@/main.scss';
 </style>

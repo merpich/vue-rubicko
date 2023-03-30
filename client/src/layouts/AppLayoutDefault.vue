@@ -5,8 +5,15 @@
 
 <template>
 	<TheHeader />
-	<div class="app-container py-20">
+	<div :class="$style['app-container']">
 		<TheSidebar />
 		<slot></slot>
 	</div>
 </template>
+
+<style module>
+	.app-container {
+		@apply container py-20 grid items-start
+			md:grid-cols-[2fr_10fr] md:gap-8;
+	}
+</style>

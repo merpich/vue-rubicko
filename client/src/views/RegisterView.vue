@@ -1,13 +1,18 @@
 <script setup>
-	import TheRegisterForm from '@/components/register/TheRegisterForm.vue'
+	import TheIntro from '@/components/intro/TheIntro.vue'
+	import TheIntroRegister from '@/components/intro/TheIntroRegister.vue'
 </script>
 
 <template>
-	<main class="app-intro">
-		<div class="app-container-intro">
-			<section class="max-w-[40rem] mx-auto">
-				<TheRegisterForm />
-			</section>
-		</div>
-	</main>
+	<TheIntro>
+		<section :class="$style['app-container']">
+			<TheIntroRegister />
+		</section>
+	</TheIntro>
 </template>
+
+<style module>
+	.app-container {
+		@apply container max-w-[40rem];
+	}
+</style>
