@@ -1,3 +1,9 @@
+<script setup>
+	import SidebarMenu from '@/components/sidebar/SidebarMenu.vue'
+</script>
+
 <template>
-	sidebar
+	<aside>
+		<SidebarMenu />
+	</aside>
 </template>
