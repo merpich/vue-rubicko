@@ -5,7 +5,7 @@
 <template>
 	<IntroCard>
 		<div :class="$style['app-logo']">
-			<img :class="$style['app-icon']" width="80" height="80" src="icons/logo-light.svg" alt="Логотип Рубико">
+			<img :class="$style['app-icon']" width="80" height="80" src="/icons/logo-light.svg" alt="Логотип Рубико">
 			<h1 :class="$style['app-title']">Rubicko</h1>
 		</div>
 		<p :class="$style['app-text']">Место, где вы можете создавать небольшие веб-приложения</p>
