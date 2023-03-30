@@ -1,3 +1,11 @@
+<script setup>
+	import TheLogo from '@/components/base/TheLogo.vue'
+</script>
+
 <template>
-	header
+	<header class="py-2 bg-slate-800 fixed top-0 left-0 right-0">
+		<div class="app-container">
+			<TheLogo />
+		</div>
+	</header>
 </template>
