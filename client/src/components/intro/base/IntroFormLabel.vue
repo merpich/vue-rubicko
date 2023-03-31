@@ -10,13 +10,7 @@
 </script>
 
 <template>
-	<label :class="$style['app-label']">
+	<label class="w-full pb-2 text-xl text-white">
 		{{ text }}
 	</label>
 </template>
-
-<style module>
-	.app-label {
-		@apply w-full pb-2 text-xl text-white;
-	}
-</style>

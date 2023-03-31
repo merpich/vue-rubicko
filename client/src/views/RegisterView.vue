@@ -5,14 +5,8 @@
 
 <template>
 	<TheIntro>
-		<section :class="$style['app-container']">
+		<section class="container max-w-[40rem]">
 			<TheIntroRegister />
 		</section>
 	</TheIntro>
 </template>
-
-<style module>
-	.app-container {
-		@apply container max-w-[40rem];
-	}
-</style>
