@@ -31,6 +31,7 @@ app.listen(process.env.PORT, (error) => listener(error))
 
 app.use(cors())
 app.use(express.json())
+app.use('/uploads', express.static('uploads'))
 
 
 /**
