@@ -12,7 +12,7 @@
 </script>
 
 <template>
-	<ul>
+	<ul	class="-ml-4">
 		<SidebarMenuItem :url="profileUrl" label="Мой профиль" />
 		<SidebarMenuItem url="/projects" label="Проекты" />
 		<SidebarMenuItem url="/posts" label="Статьи" />
