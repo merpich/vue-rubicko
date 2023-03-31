@@ -22,6 +22,6 @@
 
 @layer components {
 	.container {
-		@apply max-w-[64rem];
+		@apply max-w-[72rem];
 	}
 }
