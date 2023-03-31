@@ -1,13 +1,11 @@
 <script setup>
-	import { ref } from 'vue'
-	import { useUserStore } from '@/stores/user'
-	import TheProfileAvatar from '@/components/profile/TheProfileAvatar.vue';
-
-	const userSore = useUserStore()
+	import TheProfileAvatar from './TheProfileAvatar.vue';
+	import TheProfileData from './TheProfileData.vue';
 </script>
 
 <template>
-	<div class="grid gap-6">
+	<div class="grid md:grid-cols-none grid-cols-[4fr_8fr] items-start gap-6">
 		<TheProfileAvatar />
+		<TheProfileData />
 	</div>
 </template>
