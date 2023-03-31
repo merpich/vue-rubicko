@@ -26,7 +26,7 @@
 
 <template>
 	<BaseLoader class="mx-auto my-10" v-if="userStore.isLoading" />
-	<div class="grid gap-10 md:grid-cols-[4fr_8fr] md:items-center" v-if="!userStore.isLoading">
+	<div class="grid gap-8 md:grid-cols-[4fr_8fr] md:items-center" v-if="!userStore.isLoading">
 		<TheProfile />
 	</div>
 </template>

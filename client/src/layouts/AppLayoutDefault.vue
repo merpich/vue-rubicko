@@ -5,8 +5,10 @@
 
 <template>
 	<TheHeader />
-	<div class="container py-20 grid items-start md:grid-cols-[2fr_10fr] md:gap-8">
+	<div class="container py-24">
 		<TheSidebar />
-		<slot></slot>
+		<div class="lg:pl-48">
+			<slot></slot>
+		</div>
 	</div>
 </template>
