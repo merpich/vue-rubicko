@@ -1,10 +1,11 @@
 import { ref } from 'vue'
 import { defineStore } from 'pinia'
-import axios from '@/axios'
+import axios from '../axios'
 
 export const useUserStore = defineStore('user', () => {
 	const userData = ref({})
 	const isAuth = ref(false)
+	const isLoading = ref(false)
 
 	const login = async (data) => {
 		try {
@@ -52,18 +53,21 @@ export const useUserStore = defineStore('user', () => {
 
 	 const get = async (user) => {
 		try {
+			isLoading.value = true
 			const response = await axios.get('/user/' + user)
 			const userMe = await getMe()
 
 			userData.value = { ...response.data }
 			isAuth.value = userMe._id === userData.value._id && true
+			isLoading.value = false
 		} catch (error) {
-
+			isLoading.value = false
 		}
-	 }
+	}
 
 	return {
 		userData,
+		isLoading,
 		login,
 		register,
 		getMe,
