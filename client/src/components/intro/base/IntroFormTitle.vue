@@ -10,13 +10,7 @@
 </script>
 
 <template>
-	<h2 :class="$style['app-title']">
+	<h2 class="font-medium text-3xl text-white">
 		{{ text }}
 	</h2>
 </template>
-
-<style module>
-	.app-title {
-		@apply font-medium text-3xl text-white;
-	}
-</style>

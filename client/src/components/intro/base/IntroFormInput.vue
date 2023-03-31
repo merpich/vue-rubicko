@@ -14,13 +14,5 @@
 </script>
 
 <template>
-	<input :class="$style['app-input']" :value="modelValue" @input="updateData">
+	<input class="w-full py-2 lg:py-4 px-4 lg:px-8 outline-none rounded-2xl bg-slate-600/30 text-xl text-white placeholder:text-slate-400/75" :value="modelValue" @input="updateData">
 </template>
-
-<style module>
-	.app-input {
-		@apply w-full py-2 lg:py-4 px-4 lg:px-8
-			outline-none rounded-2xl bg-slate-600/30
-			text-xl text-white placeholder:text-slate-400/75;
-	}
-</style>
