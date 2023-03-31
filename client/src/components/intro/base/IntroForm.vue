@@ -1,11 +1,5 @@
 <template>
-	<form :class="$style['app-form']">
+	<form class="grid gap-4 md:gap-8">
 		<slot></slot>
 	</form>
 </template>
-
-<style module>
-	.app-form {
-		@apply grid gap-4 md:gap-8;
-	}
-</style>

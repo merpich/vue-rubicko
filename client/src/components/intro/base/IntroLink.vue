@@ -12,13 +12,7 @@
 </script>
 
 <template>
-	<RouterLink :class="$style['app-link']" :to="url">
+	<RouterLink class="text-xl text-white hover:underline focus:underline outline-none" :to="url">
 		<slot></slot>
 	</RouterLink>
 </template>
-
-<style module>
-	.app-link {
-		@apply text-xl text-white hover:underline focus:underline outline-none;
-	}
-</style>
