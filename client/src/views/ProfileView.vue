@@ -4,6 +4,8 @@
 	import { useUserStore } from '../stores/user'
 	import { BaseLoader } from '../components/base'
 	import TheProfile from '../components/profile/TheProfile.vue'
+	import TheProfileProjects from '../components/profile/TheProfileProjects.vue'
+	import TheProfilePosts from '../components/profile/TheProfilePosts.vue'
 
 	const route = useRoute()
 	const userStore = useUserStore()
@@ -26,7 +28,11 @@
 
 <template>
 	<BaseLoader class="mx-auto my-10" v-if="userStore.isLoading" />
-	<div class="grid gap-8 md:grid-cols-[4fr_8fr] md:items-center" v-if="!userStore.isLoading">
+	<div class="grid gap-8 md:grid-cols-[4fr_8fr] md:items-start" v-if="!userStore.isLoading">
 		<TheProfile />
+		<div class="grid gap-8">
+			<TheProfileProjects />
+			<TheProfilePosts />
+		</div>
 	</div>
 </template>
