@@ -53,6 +53,16 @@ const routes = [
 			requiredAuth: true,
 			layout: 'AppLayoutDefault'
 		}
+	},
+
+	{
+		path: '/settings',
+		name: 'settings',
+		component: () => import('../views/SettingsView.vue'),
+		meta: {
+			requiredAuth: true,
+			layout: 'AppLayoutDefault'
+		}
 	}
 ]
 
