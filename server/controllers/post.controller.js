@@ -3,19 +3,33 @@ import CategoryModel from '../models/category.model.js'
 
 export const getPosts = async (req, res) => {
 	try {
-		const category = await CategoryModel.find({ title: req.query.category })
+		let posts = null
 
-		if (!category || category.length === 0) {
+		if (req.query.category) {
+			const category = await CategoryModel.find({ title: req.query.category })
+
+			if (!category || category.length === 0) {
+				return res.status(404).json({
+					message: 'Статьи не найдены'
+				})
+			}
+
+			posts = await PostModel
+				.find({ categoryId: category })
+				.populate('userId')
+				.populate('categoryId')
+				.exec()
+		} else if (req.query.user) {
+			posts = await PostModel
+				.find({ userId: req.query.user })
+				.populate('userId')
+				.populate('categoryId')
+				.exec()
+		} else {
 			return res.status(404).json({
 				message: 'Статьи не найдены'
 			})
 		}
-
-		const posts = await PostModel
-			.find({ categoryId: category })
-			.populate('userId')
-			.populate('categoryId')
-			.exec()
 
 		if (posts.length === 0) {
 			return res.status(404).json({
