@@ -1,6 +1,6 @@
 <script setup>
-	import TheIntro from '@/components/intro/TheIntro.vue'
-	import TheIntroRegister from '@/components/intro/TheIntroRegister.vue'
+	import TheIntro from '../components/intro/TheIntro.vue'
+	import TheIntroRegister from '../components/intro/TheIntroRegister.vue'
 </script>
 
 <template>

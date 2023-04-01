@@ -1,6 +1,6 @@
 <script setup>
-	import { computed } from '@vue/reactivity'
-	import { useUserStore } from '@/stores/user'
+	import { computed } from 'vue'
+	import { useUserStore } from '../../stores/user'
 
 	const userStore = useUserStore()
 

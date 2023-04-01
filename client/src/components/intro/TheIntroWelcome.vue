@@ -1,5 +1,5 @@
 <script setup>
-	import IntroCard from '@/components/intro/base/IntroCard.vue'
+	import { IntroCard } from './base'
 </script>
 
 <template>

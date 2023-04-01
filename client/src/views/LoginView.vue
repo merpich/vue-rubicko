@@ -1,7 +1,7 @@
 <script setup>
-	import TheIntro from '@/components/intro/TheIntro.vue'
-	import TheIntroWelcome from '@/components/intro/TheIntroWelcome.vue'
-	import TheIntroLogin from '@/components/intro/TheIntroLogin.vue'
+	import TheIntro from '../components/intro/TheIntro.vue'
+	import TheIntroWelcome from '../components/intro/TheIntroWelcome.vue'
+	import TheIntroLogin from '../components/intro/TheIntroLogin.vue'
 </script>
 
 <template>

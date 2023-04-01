@@ -1,6 +1,6 @@
 <script setup>
-	import TheHeader from '@/components/header/TheHeader.vue'
-	import TheSidebar from '@/components/sidebar/TheSidebar.vue'
+	import TheHeader from '../components/header/TheHeader.vue'
+	import TheSidebar from '../components/sidebar/TheSidebar.vue'
 </script>
 
 <template>

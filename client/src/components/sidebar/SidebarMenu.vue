@@ -1,7 +1,7 @@
 <script setup>
 	import { ref, computed, onBeforeMount } from 'vue'
-	import { useUserStore } from '@/stores/user'
-	import SidebarMenuItem from '@/components/sidebar/SidebarMenuItem.vue'
+	import { useUserStore } from '../../stores/user'
+	import SidebarMenuItem from './SidebarMenuItem.vue'
 
 	const userMe = ref({})
 	const userStore = useUserStore()

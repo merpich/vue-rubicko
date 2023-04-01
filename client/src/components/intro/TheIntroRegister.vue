@@ -1,12 +1,12 @@
 <script setup>
 	import { ref } from 'vue'
 	import { useRouter } from 'vue-router'
-	import { useUserStore } from '@/stores/user'
+	import { useUserStore } from '../../stores/user'
 
 	import {
 		IntroCard, IntroButton, IntroLink, IntroForm,
 		IntroFormTitle, IntroFormLabel, IntroFormInput
-	} from '@/components/intro/base'
+	} from './base'
 
 	const data = ref({
 		email: '',
