@@ -6,19 +6,49 @@ const routes = [
 	{
 		path: '/',
 		name: 'login',
-		component: () => import('@/views/LoginView.vue')
+		component: () => import('../views/LoginView.vue')
 	},
 
 	{
 		path: '/register',
 		name: 'register',
-		component: () => import('@/views/RegisterView.vue')
+		component: () => import('../views/RegisterView.vue')
 	},
 
 	{
 		path: '/:id',
 		name: 'profile',
-		component: () => import('@/views/ProfileView.vue'),
+		component: () => import('../views/ProfileView.vue'),
+		meta: {
+			requiredAuth: true,
+			layout: 'AppLayoutDefault'
+		}
+	},
+
+	{
+		path: '/projects',
+		name: 'projects',
+		component: () => import('../views/ProjectsView.vue'),
+		meta: {
+			requiredAuth: true,
+			layout: 'AppLayoutDefault'
+		}
+	},
+
+	{
+		path: '/posts',
+		name: 'posts',
+		component: () => import('../views/PostsView.vue'),
+		meta: {
+			requiredAuth: true,
+			layout: 'AppLayoutDefault'
+		}
+	},
+
+	{
+		path: '/news',
+		name: 'news',
+		component: () => import('../views/NewsView.vue'),
 		meta: {
 			requiredAuth: true,
 			layout: 'AppLayoutDefault'
