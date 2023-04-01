@@ -7,8 +7,8 @@
 		<RouterLink class="text-blue-600 font-medium hover:underline" to="#">
 			Название
 		</RouterLink>
-		<date class="font-slate-900">
-			20-12-2023
-		</date>
+		<time datetime="2023-04-01" class="font-slate-900">
+			2023-04-01
+		</time>
 	</div>
 </template>
