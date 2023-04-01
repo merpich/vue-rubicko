@@ -1,9 +1,11 @@
 <script setup>
 	import { computed } from 'vue'
+	import { useUserStore } from '../../stores/user'
 	import { useProjectStore } from '../../stores/project'
 	import ProjectItem from '../project/ProjectItem.vue'
 	import { BaseButton } from '../base'
 
+	const userStore = useUserStore()
 	const projectStore = useProjectStore()
 
 	const projects = computed(() => projectStore.projects)
@@ -14,7 +16,7 @@
 	<section class="grid gap-6">
 		<header class="flex items-center justify-between">
 			<h2 class="text-xl sm:text-2xl text-slate-900 font-semibold">Проекты</h2>
-			<BaseButton>
+			<BaseButton v-if="userStore.isAuth">
 				Создать проект
 			</BaseButton>
 		</header>

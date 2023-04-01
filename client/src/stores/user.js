@@ -64,6 +64,7 @@ export const useUserStore = defineStore('user', () => {
 
 	return {
 		userData,
+		isAuth,
 		login,
 		register,
 		getMe,

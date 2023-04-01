@@ -1,9 +1,11 @@
 <script setup>
 	import { computed } from 'vue'
+	import { useUserStore } from '../../stores/user'
 	import { usePostStore } from '../../stores/post'
 	import ArticleItem from '../article/ArticleItem.vue'
 	import { BaseButton } from '../base'
 
+	const userStore = useUserStore()
 	const postStore = usePostStore()
 
 	const posts = computed(() => postStore.posts)
@@ -14,7 +16,7 @@
 	<section class="grid gap-6">
 		<header class="flex items-center justify-between">
 			<h2 class="text-xl sm:text-2xl text-slate-900 font-semibold">Статьи</h2>
-			<BaseButton>
+			<BaseButton v-if="userStore.isAuth">
 				Создать статью
 			</BaseButton>
 		</header>
