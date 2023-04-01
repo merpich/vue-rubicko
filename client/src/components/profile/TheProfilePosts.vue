@@ -1,6 +1,13 @@
 <script setup>
+	import { computed } from 'vue'
+	import { usePostStore } from '../../stores/post'
 	import ArticleItem from '../article/ArticleItem.vue'
 	import { BaseButton } from '../base'
+
+	const postStore = usePostStore()
+
+	const posts = computed(() => postStore.posts)
+	const postsFiltered = computed(() => posts.value.filter((item, index) => index < 4))
 </script>
 
 <template>
@@ -12,10 +19,11 @@
 			</BaseButton>
 		</header>
 		<div class="grid gap-4">
-			<ArticleItem />
-			<ArticleItem />
-			<ArticleItem />
-			<ArticleItem />
+			<ArticleItem
+				v-for="post in postsFiltered"
+				:key="post._id"
+				:data="{ ...post }"
+			/>
 		</div>
 	</section>
 </template>
