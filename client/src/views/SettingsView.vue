@@ -35,7 +35,7 @@
 	}
 
 	const updateBio = async () => {
-		await userStore.update(userData)
+		await userStore.update(userData.value)
 		success.value = true
 	}
 </script>
