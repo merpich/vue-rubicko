@@ -7,12 +7,12 @@
 
 	const isLoading = ref(false)
 	const userStore = useUserStore()
-	const data = ref({})
+	const userData = ref({})
 
 	const fetchData = async () => {
 		try {
 			isLoading.value = true
-			data.value =  await userStore.getMe()
+			userData.value =  await userStore.getMe()
 			isLoading.value = false
 		} catch (error) {
 			isLoading.value = false
@@ -20,6 +20,19 @@
 	}
 
 	onBeforeMount(() => fetchData())
+
+	const uploadAvatar = async (data) => {
+		const formData = new FormData()
+		formData.append('image', data)
+		const response = await userStore.update(formData)
+		userData.value.avatarUrl = response.data.avatarUrl
+	}
+
+	const removeAvatar = async () => {
+		const response = await userStore.update({ avatarUrl: null })
+		console.log(response)
+		userData.value.avatarUrl = null
+	}
 </script>
 
 <template>
@@ -27,8 +40,12 @@
 	<div class="grid gap-8" v-if="!isLoading">
 		<h1 class="text-2xl text-slate-900 font-bold">Настройки</h1>
 		<div class="grid gap-6">
-			<TheSettingsAvatar :avatarUrl="data.avatarUrl" />
-			<TheSettingsBio :data="{ ...data }" />
+			<TheSettingsAvatar
+				:avatarUrl="userData.avatarUrl"
+				@upload="uploadAvatar"
+				@remove="removeAvatar"
+			/>
+			<TheSettingsBio :data="{ ...userData }" />
 		</div>
 	</div>
 </template>

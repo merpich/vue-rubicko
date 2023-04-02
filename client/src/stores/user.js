@@ -62,12 +62,27 @@ export const useUserStore = defineStore('user', () => {
 		}
 	}
 
+	const update = async (data) => {
+		try {
+			const response = await axios.patch('/user', data, {
+				headers: {
+					Authorization: localStorage.getItem('token')
+				}
+			})
+
+			return response.data
+		} catch (error) {
+
+		}
+	}
+
 	return {
 		userData,
 		isAuth,
 		login,
 		register,
 		getMe,
-		get
+		get,
+		update
 	}
 })

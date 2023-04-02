@@ -48,15 +48,19 @@ export const updateUser = async (req, res) => {
 			req.body.userName = req.body.userName.toLowerCase()
 		}
 
+		const body = { ...req.body }
+
+		if (req.file) {
+			body.avatarUrl = `/uploads/avatars/${req.file.filename}`
+		}
+
 		await UserModel.updateOne({
 			_id: req.userId
-		}, {
-			...req.body,
-			avatarUrl: req.file && `/uploads/avatars/${req.file.filename}`
-		})
+		}, body)
 
 		res.status(200).json({
-			success: true
+			success: true,
+			data: body
 		})
 	} catch (error) {
 		console.log(error)
