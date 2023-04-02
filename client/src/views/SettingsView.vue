@@ -5,17 +5,18 @@
 	import TheSettingsAvatar from '../components/settings/TheSettingsAvatar.vue'
 	import TheSettingsBio from '../components/settings/TheSettingsBio.vue'
 
-	const isLoading = ref(false)
+	const loading = ref(false)
+	const success = ref(false)
 	const userStore = useUserStore()
 	const userData = ref({})
 
 	const fetchData = async () => {
 		try {
-			isLoading.value = true
+			loading.value = true
 			userData.value =  await userStore.getMe()
-			isLoading.value = false
+			loading.value = false
 		} catch (error) {
-			isLoading.value = false
+			loading.value = false
 		}
 	}
 
@@ -29,15 +30,19 @@
 	}
 
 	const removeAvatar = async () => {
-		const response = await userStore.update({ avatarUrl: null })
-		console.log(response)
+		await userStore.update({ avatarUrl: null })
 		userData.value.avatarUrl = null
+	}
+
+	const updateBio = async () => {
+		await userStore.update(userData)
+		success.value = true
 	}
 </script>
 
 <template>
-	<BaseLoader class="mx-auto my-10" v-if="isLoading" />
-	<div class="grid gap-8" v-if="!isLoading">
+	<BaseLoader class="mx-auto my-10" v-if="loading" />
+	<div class="grid gap-8" v-if="!loading">
 		<h1 class="text-2xl text-slate-900 font-bold">Настройки</h1>
 		<div class="grid gap-6">
 			<TheSettingsAvatar
@@ -45,7 +50,12 @@
 				@upload="uploadAvatar"
 				@remove="removeAvatar"
 			/>
-			<TheSettingsBio :data="{ ...userData }" />
+			<TheSettingsBio
+				:data="userData"
+				:loading="loading"
+				:success="success"
+				@save="updateBio"
+			/>
 		</div>
 	</div>
 </template>

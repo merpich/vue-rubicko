@@ -48,7 +48,7 @@ export const updateUser = async (req, res) => {
 			req.body.userName = req.body.userName.toLowerCase()
 		}
 
-		const body = { ...req.body }
+		const body = { ...req.body._value }
 
 		if (req.file) {
 			body.avatarUrl = `/uploads/avatars/${req.file.filename}`

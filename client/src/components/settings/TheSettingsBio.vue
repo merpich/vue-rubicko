@@ -1,12 +1,21 @@
 <script setup>
-	import { BaseButton } from '../base'
+	import { BaseLoader, BaseButton, BaseLabel, BaseInput, BaseTextarea } from '../base'
 
-	const props = defineProps({
+	defineProps({
 		data: {
 			type: Object,
-			reqiored: true
+			required: true
+		},
+		success: {
+			type: Boolean,
+			default() {
+				return false
+			}
 		}
 	})
+
+	const emits = defineEmits(['save'])
+	const save = () => emits('save')
 </script>
 
 <template>
@@ -14,20 +23,21 @@
 		<h2 class="text-lg font-semibold">Данные профиля</h2>
 		<form class="max-w-xs grid gap-4" method="post" @submit.prevent>
 			<div class="grid">
-				<label class="pb-1 text-base text-slate-900" for="userName">Никнейм</label>
-				<input class="py-2 px-4 shadow bg-white rounded-2xl outline-none text-base text-slate-900" type="text" id="userName" name="userName">
+				<BaseLabel text="Никнейм" for="userName" />
+				<BaseInput type="text" id="userName" :value="data.userName" v-model="data.userName" />
 			</div>
 			<div class="grid">
-				<label class="pb-1 text-base text-slate-900" for="name">Имя</label>
-				<input class="py-2 px-4 shadow bg-white rounded-2xl outline-none text-base text-slate-900" type="text" id="name" name="name">
+				<BaseLabel text="Имя" for="name" />
+				<BaseInput type="text" id="name" :value="data.fullName" v-model="data.fullName" />
 			</div>
 			<div class="grid">
-				<label class="pb-1 text-base text-slate-900" for="userBio">О себе</label>
-				<textarea class="py-2 px-4 shadow bg-white rounded-2xl outline-none text-base text-slate-900" name="userBio" id="userBio" cols="30" rows="5"></textarea>
+				<BaseLabel text="О себе" for="userBio" />
+				<BaseTextarea id="userBio" cols="30" rows="5" :value="data.userBio" v-model="data.userBio" />
 			</div>
-			<BaseButton class="justify-self-start">
+			<BaseButton class="justify-self-start" @click="save">
 				Сохранить
 			</BaseButton>
+			<p class="text-slate-900" v-if="success">Данные обновлены</p>
 		</form>
 	</div>
 </template>
