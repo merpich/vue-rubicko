@@ -76,7 +76,7 @@ export const useUserStore = defineStore('user', () => {
 			if (error.response) {
 				return error.response.data
 			}
-			return [{ msg: 'Ошибка сети' }]
+			return [{ param: 'network', msg: 'Ошибка сети' }]
 		}
 	}
 

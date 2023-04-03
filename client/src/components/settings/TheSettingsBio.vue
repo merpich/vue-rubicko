@@ -12,7 +12,8 @@
 	const errors = ref({
 		userName: '',
 		fullName: '',
-		userBio: ''
+		userBio: '',
+		network: ''
 	})
 
 	const userStore = useUserStore()
@@ -60,6 +61,7 @@
 				<BaseLabel text="Никнейм" for="userName" />
 				<BaseInput type="text" id="userName" :value="userData.userName" v-model="userData.userName" />
 				<p class="text-red-500" v-if="errors.userName">{{ errors.userName }}</p>
+				<p class="text-red-500" v-if="errors.network">{{ errors.network }}</p>
 			</div>
 			<div class="grid">
 				<BaseLabel text="Имя" for="name" />
