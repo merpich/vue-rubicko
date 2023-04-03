@@ -44,19 +44,20 @@ export const useUserStore = defineStore('user', () => {
 				}
 			})
 
-			return response.data
+			userData.value = { ...response.data }
 		} catch (error) {
 
 		}
 	}
 
-	 const get = async (user) => {
+	 const get = async (userName) => {
 		try {
-			const response = await axios.get('/user/' + user)
-			const userMe = await getMe()
+			const response = await axios.get('/user/' + userName)
+			const user = response.data
 
-			userData.value = { ...response.data }
-			isAuth.value = userMe._id === userData.value._id && true
+			isAuth.value = user._id === userData.value._id
+
+			return response.data
 		} catch (error) {
 
 		}
@@ -70,7 +71,7 @@ export const useUserStore = defineStore('user', () => {
 				}
 			})
 
-			return response.data
+			Object.assign(userData.value, response.data.data)
 		} catch (error) {
 
 		}

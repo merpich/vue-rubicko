@@ -1,25 +1,24 @@
 <script setup>
 	import { computed } from 'vue'
+	import { useUserStore } from '../../stores/user'
 	import { BaseButton, BaseFile } from '../base'
 
-	const props = defineProps({
-		avatarUrl: {
-			type: String
-		}
-	})
-
-	const emits = defineEmits(['upload', 'remove'])
+	const userStore = useUserStore()
 
 	const src = computed(() => {
-		return props.avatarUrl ? import.meta.env.VITE_APP_BACKEND_URL + props.avatarUrl : false
+		return userStore.userData.avatarUrl
+			? import.meta.env.VITE_APP_BACKEND_URL + userStore.userData.avatarUrl
+			: false
 	})
 
-	const upload = (event) => {
-		emits('upload', event.target.files[0])
+	const uploadAvatar = async (event) => {
+		const formData = new FormData()
+		formData.append('image', event.target.files[0])
+		await userStore.update(formData)
 	}
 
-	const remove = () => {
-		emits('remove')
+	const removeAvatar = async () => {
+		await userStore.update({ avatarUrl: null })
 	}
 </script>
 
@@ -34,8 +33,8 @@
 				<img v-if="src" class="w-full h-full object-cover" :src="src" alt="Изображение профиля">
 			</div>
 			<div class="grid items-start">
-				<BaseFile @input="upload" />
-				<BaseButton class="justify-self-start" color="red" @click="remove">
+				<BaseFile @input="uploadAvatar" />
+				<BaseButton class="justify-self-start" color="red" @click="removeAvatar">
 					Удалить
 				</BaseButton>
 			</div>

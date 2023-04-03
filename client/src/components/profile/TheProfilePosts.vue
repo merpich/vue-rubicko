@@ -2,14 +2,14 @@
 	import { computed } from 'vue'
 	import { useUserStore } from '../../stores/user'
 	import { usePostStore } from '../../stores/post'
-	import ArticleItem from '../article/ArticleItem.vue'
+
 	import { BaseButton } from '../base'
+	import ArticleItem from '../article/ArticleItem.vue'
 
 	const userStore = useUserStore()
 	const postStore = usePostStore()
 
-	const posts = computed(() => postStore.posts)
-	const postsFiltered = computed(() => posts.value.filter((item, index) => index < 4))
+	const posts = computed(() => postStore.posts.filter((item, index) => index < 4))
 </script>
 
 <template>
@@ -22,7 +22,7 @@
 		</header>
 		<div class="grid gap-4">
 			<ArticleItem
-				v-for="post in postsFiltered"
+				v-for="post in posts"
 				:key="post._id"
 				:data="{ ...post }"
 			/>

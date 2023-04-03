@@ -1,14 +1,12 @@
 <script setup>
-	import { ref, computed, onBeforeMount } from 'vue'
+	import { computed, onBeforeMount } from 'vue'
 	import { useUserStore } from '../../stores/user'
 	import SidebarMenuItem from './SidebarMenuItem.vue'
 
-	const userMe = ref({})
 	const userStore = useUserStore()
+	const profileUrl = computed(() => '/' + userStore.userData.userName)
 
-	const profileUrl = computed(() => '/' + userMe.value.userName)
-
-	onBeforeMount(async () => userMe.value = await userStore.getMe())
+	onBeforeMount(async () => await userStore.getMe())
 </script>
 
 <template>

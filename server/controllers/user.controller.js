@@ -44,14 +44,18 @@ export const getUser = async (req, res) => {
 
 export const updateUser = async (req, res) => {
 	try {
-		if (req.body.userName) {
-			req.body.userName = req.body.userName.toLowerCase()
-		}
-
-		const body = { ...req.body._value }
+		let body = {}
 
 		if (req.file) {
 			body.avatarUrl = `/uploads/avatars/${req.file.filename}`
+		}
+
+		if (!req.file) {
+			if (req.body.userName) {
+				req.body.userName = req.body.userName.toLowerCase()
+			}
+
+			body = { ...req.body }
 		}
 
 		await UserModel.updateOne({

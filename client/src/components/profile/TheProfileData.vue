@@ -1,12 +1,16 @@
 <script setup>
 	import { computed } from 'vue'
-	import { useUserStore } from '../../stores/user'
 
-	const userStore = useUserStore()
+	const props = defineProps({
+		userData: {
+			type: Object,
+			required: true
+		}
+	})
 
-	const userName = computed(() => userStore.userData.userName)
-	const fullName = computed(() => userStore.userData.fullName)
-	const userBio = computed(() => userStore.userData.userBio)
+	const userName = computed(() => props.userData.userName)
+	const fullName = computed(() => props.userData.fullName)
+	const userBio = computed(() => props.userData.userBio)
 </script>
 
 <template>

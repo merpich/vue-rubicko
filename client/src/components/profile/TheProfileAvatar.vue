@@ -1,11 +1,15 @@
 <script setup>
 	import { computed } from 'vue'
-	import { useUserStore } from '../../stores/user'
 
-	const userStore = useUserStore()
+	const props = defineProps({
+		userData: {
+			type: Object,
+			required: true
+		}
+	})
 
 	const src = computed(() => {
-		return userStore.userData.avatarUrl ? import.meta.env.VITE_APP_BACKEND_URL + userStore.userData.avatarUrl : false
+		return props.userData.avatarUrl ? import.meta.env.VITE_APP_BACKEND_URL + props.userData.avatarUrl : false
 	})
 </script>
 

@@ -16,7 +16,7 @@ const routes = [
 	},
 
 	{
-		path: '/:id',
+		path: '/:username',
 		name: 'profile',
 		component: () => import('../views/ProfileView.vue'),
 		meta: {

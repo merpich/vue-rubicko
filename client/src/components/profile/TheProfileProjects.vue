@@ -2,14 +2,14 @@
 	import { computed } from 'vue'
 	import { useUserStore } from '../../stores/user'
 	import { useProjectStore } from '../../stores/project'
-	import ProjectItem from '../project/ProjectItem.vue'
+
 	import { BaseButton } from '../base'
+	import ProjectItem from '../project/ProjectItem.vue'
 
 	const userStore = useUserStore()
 	const projectStore = useProjectStore()
 
-	const projects = computed(() => projectStore.projects)
-	const projectsFiltered = computed(() => projects.value.filter((item, index) => index < 4))
+	const projects = computed(() => projectStore.projects.filter((item, index) => index < 4))
 </script>
 
 <template>
@@ -22,7 +22,7 @@
 		</header>
 		<div class="grid sm:grid-cols-2 gap-4">
 			<ProjectItem
-				v-for="project in projectsFiltered"
+				v-for="project in projects"
 				:key="project._id"
 				:data="{ ...project }"
 			/>
