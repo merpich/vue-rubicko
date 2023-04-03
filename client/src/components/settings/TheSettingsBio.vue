@@ -8,6 +8,13 @@
 	} from '../base'
 
 	const userData = ref({})
+
+	const errors = ref({
+		userName: '',
+		fullName: '',
+		userBio: ''
+	})
+
 	const userStore = useUserStore()
 
 	const saveData = async () => {
@@ -25,7 +32,21 @@
 			data.userBio = userData.value.userBio
 		}
 
-		await userStore.update(data)
+		const response = await userStore.update(data)
+
+		Object.keys(errors.value).forEach(msg => errors.value[msg] = '')
+
+		if (response) {
+			response.forEach(error => {
+				Object.keys(errors.value).forEach(msg => {
+					if (msg === error.param) {
+						errors.value[msg] = error.msg
+					}
+				})
+			})
+
+			return
+		}
 	}
 
 	onBeforeMount(() => userData.value = { ...userStore.userData })
@@ -38,14 +59,17 @@
 			<div class="grid">
 				<BaseLabel text="Никнейм" for="userName" />
 				<BaseInput type="text" id="userName" :value="userData.userName" v-model="userData.userName" />
+				<p class="text-red-500" v-if="errors.userName">{{ errors.userName }}</p>
 			</div>
 			<div class="grid">
 				<BaseLabel text="Имя" for="name" />
 				<BaseInput type="text" id="name" :value="userData.fullName" v-model="userData.fullName" />
+				<p class="text-red-500" v-if="errors.fullName">{{ errors.fullName }}</p>
 			</div>
 			<div class="grid">
 				<BaseLabel text="О себе" for="userBio" />
 				<BaseTextarea id="userBio" cols="30" rows="5" :value="userData.userBio" v-model="userData.userBio" />
+				<p class="text-red-500" v-if="errors.userBio">{{ errors.userBio }}</p>
 			</div>
 			<BaseButton class="justify-self-start" @click="saveData">
 				Сохранить

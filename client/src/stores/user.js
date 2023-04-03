@@ -73,7 +73,10 @@ export const useUserStore = defineStore('user', () => {
 
 			Object.assign(userData.value, response.data.data)
 		} catch (error) {
-
+			if (error.response) {
+				return error.response.data
+			}
+			return [{ msg: 'Ошибка сети' }]
 		}
 	}
 
