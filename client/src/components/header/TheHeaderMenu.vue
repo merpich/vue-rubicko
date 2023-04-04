@@ -1,7 +1,10 @@
 <script setup>
+	import { computed } from 'vue'
 	import { useRouter } from 'vue-router'
+
 	import { useUserStore } from '../../stores/user'
 	import { BaseButton } from '../base'
+	import HeaderMenuLink from './HeaderMenuLink.vue'
 
 	const userStore = useUserStore()
 	const router = useRouter()
@@ -10,10 +13,23 @@
 		userStore.logout()
 		router.push('/')
 	}
+
+	const profileUrl = computed(() => '/' + userStore.userData.userName)
 </script>
 
 <template>
 	<nav class="absolute top-[calc(100%+1rem)] right-0 p-4 w-72 bg-white shadow rounded-2xl">
+		<ul>
+			<HeaderMenuLink :url="profileUrl" label="Мой профиль" />
+			<HeaderMenuLink url="/projects" label="Мои проекты" />
+			<HeaderMenuLink url="/posts" label="Мои статьи" />
+			<HeaderMenuLink url="/news" label="Новости" />
+		</ul>
+		<hr class="bg-slate-200 my-2">
+		<ul>
+			<HeaderMenuLink url="/settings" label="Настройки" />
+		</ul>
+		<hr class="bg-slate-200 my-2">
 		<ul>
 			<li>
 				<BaseButton class="w-full" @click="logout">
