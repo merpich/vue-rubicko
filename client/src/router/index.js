@@ -36,6 +36,16 @@ const routes = [
 	},
 
 	{
+		path: '/editor',
+		name: 'editor',
+		component: () => import('../views/CodeView.vue'),
+		meta: {
+			requiredAuth: true,
+			layout: 'AppLayoutCode'
+		}
+	},
+
+	{
 		path: '/posts',
 		name: 'posts',
 		component: () => import('../views/PostsView.vue'),
