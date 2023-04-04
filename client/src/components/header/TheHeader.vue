@@ -1,7 +1,14 @@
 <script setup>
+	import { ref } from 'vue'
 	import { BaseLogo } from '../base'
 	import TheHeaderDots from './TheHeaderDots.vue'
 	import TheHeaderMenu from './TheHeaderMenu.vue'
+
+	const isOpen = ref(false)
+
+	const switchMenu = () => {
+		isOpen.value = !isOpen.value
+	}
 </script>
 
 <template>
@@ -9,8 +16,8 @@
 		<div class="container flex justify-between">
 			<BaseLogo />
 			<div class="relative -my-2">
-				<TheHeaderDots />
-				<TheHeaderMenu />
+				<TheHeaderDots @click="switchMenu" />
+				<TheHeaderMenu v-if="isOpen" />
 			</div>
 		</div>
 	</header>
