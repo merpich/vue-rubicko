@@ -36,6 +36,11 @@ export const useUserStore = defineStore('user', () => {
 		}
 	}
 
+	const logout = () => {
+		localStorage.removeItem('token')
+		userData.value = {}
+	}
+
 	 const getMe = async () => {
 		try {
 			const response = await axios.get('/user', {
@@ -85,6 +90,7 @@ export const useUserStore = defineStore('user', () => {
 		isAuth,
 		login,
 		register,
+		logout,
 		getMe,
 		get,
 		update
