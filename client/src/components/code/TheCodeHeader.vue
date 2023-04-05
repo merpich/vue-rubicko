@@ -4,7 +4,7 @@
 </script>
 
 <template>
-	<header class="py-2 px-3 flex justify-between bg-slate-800">
+	<header class="py-2 px-3 flex justify-between bg-slate-800 relative z-10">
 		<BaseLogo />
 		<TheHeaderControls />
 	</header>
