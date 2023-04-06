@@ -7,7 +7,7 @@
 	import 'ace-builds/src-min-noconflict/snippets/html'
 	import 'ace-builds/src-min-noconflict/snippets/css'
 	import 'ace-builds/src-min-noconflict/snippets/javascript'
-	import 'ace-builds/src-min-noconflict/theme-dracula'
+	import 'ace-builds/src-min-noconflict/theme-cloud9_night_low_color'
 	import 'ace-builds/src-min-noconflict/ext-language_tools'
 
 	const options = {
@@ -40,15 +40,16 @@
 </script>
 
 <template>
-	<div class="bg-[#282a36]">
+	<div class="border-t-2 border-slate-600 bg-slate-800">
 		<div class="flex">
-			<h2 class="px-3 py-1 text-white inline-block border-t-2 border-x-2 border-slate-600 rounded-t-2xl">{{ label }}</h2>
-			<div class="border-b-2 border-slate-600 w-full"></div>
+			<div class="border-b-2 border-r-2 border-slate-600 rounded-br-2xl"></div>
+			<h2 class="px-3 py-1 text-white inline-block">{{ label }}</h2>
+			<div class="w-full border-b-2 border-l-2 border-slate-600 rounded-bl-2xl"></div>
 		</div>
 
 		<VAceEditor
-			class="h-80 border-l-2 border-b-2 border-slate-600"
-			theme="dracula"
+			class="h-80 border-l-2 border-slate-600"
+			theme="cloud9_night_low_color"
 			:lang="lang"
 			:options="options"
 			:value="modelValue"

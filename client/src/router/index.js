@@ -40,8 +40,7 @@ const routes = [
 		name: 'editor',
 		component: () => import('../views/CodeView.vue'),
 		meta: {
-			requiredAuth: true,
-			layout: 'AppLayoutCode'
+			requiredAuth: true
 		}
 	},
 

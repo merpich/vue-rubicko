@@ -1,42 +1,33 @@
 <script setup>
-	import { onBeforeMount, ref, computed } from 'vue'
-	import { useRoute } from 'vue-router'
+	import { ref, computed } from 'vue'
 
 	import { useProjectStore } from '../../stores/project'
-	import { useUserStore } from '../../stores/user'
 
-	const isLoading = ref(false)
+	defineProps({
+		isAuth: {
+			type: Boolean,
+			required: true
+		}
+	})
+
 	const isOpen = ref(false)
-	const isAuth = ref(false)
-	const route = useRoute()
 
 	const projectStore = useProjectStore()
-	const userStore = useUserStore()
 
 	const title = computed(() => projectStore.projectData.title)
 	const classes = computed(() => isOpen.value ? 'fill-white rotate-180' : 'fill-white')
 
 	const switchMenu = () => isOpen.value = !isOpen.value
 
-	const fetchData = async () => {
-		isLoading.value = true
-		await userStore.getMe()
-		await projectStore.getOne(route.params.id)
-		isAuth.value = userStore.userData._id === projectStore.projectData.userId._id
-		isLoading.value = false
-	}
-
 	const save = async () => {
 		await projectStore.update()
 		isOpen.value = false
 	}
-
-	onBeforeMount(() => fetchData())
 </script>
 
 <template>
 	<div class="relative">
-		<div class="flex items-center gap-2" v-if="!isLoading">
+		<div class="flex items-center gap-2">
 			<h1	h1 class="text-white font-medium">{{ title }}</h1>
 			<button class="p-2" @click="switchMenu" v-if="isAuth">
 				<svg :class="classes" width="8" height="5" viewBox="0 0 8 5" xmlns="http://www.w3.org/2000/svg">
