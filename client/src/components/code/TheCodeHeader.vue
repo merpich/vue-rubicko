@@ -1,11 +1,13 @@
 <script setup>
 	import { BaseLogo } from '../base'
 	import TheHeaderControls from '../header/TheHeaderControls.vue'
+	import TheCodeTools from './TheCodeTools.vue'
 </script>
 
 <template>
-	<header class="py-2 px-3 flex justify-between bg-slate-800 relative z-10">
+	<header class="py-2 px-3 grid grid-cols-[1fr_10fr_1fr] items-center bg-slate-800 relative z-10">
 		<BaseLogo />
-		<TheHeaderControls />
+		<TheCodeTools class="justify-self-center" />
+		<TheHeaderControls class="justify-self-end" />
 	</header>
 </template>

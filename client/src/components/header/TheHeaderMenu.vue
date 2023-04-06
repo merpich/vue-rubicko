@@ -1,5 +1,5 @@
 <script setup>
-	import { computed } from 'vue'
+	import { computed, onBeforeMount } from 'vue'
 	import { useRouter } from 'vue-router'
 
 	import { useUserStore } from '../../stores/user'
@@ -15,6 +15,8 @@
 	}
 
 	const profileUrl = computed(() => '/' + userStore.userData.userName)
+
+	onBeforeMount(async () => await userStore.getMe())
 </script>
 
 <template>

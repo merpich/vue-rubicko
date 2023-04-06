@@ -15,8 +15,32 @@ export const useProjectStore = defineStore('project', () => {
 		}
 	}
 
+	const getOne = async (projectId) => {
+		try {
+			const response = await axios.get('/project/' + projectId)
+			projectData.value = { ...response.data }
+		} catch (error) {
+
+		}
+	}
+
+	const update = async () => {
+		try {
+			await axios.patch('/project/' + projectData.value._id, projectData.value, {
+				headers: {
+					Authorization: localStorage.getItem('token')
+				}
+			})
+		} catch (error) {
+
+		}
+	}
+
 	return {
 		projects,
-		get
+		projectData,
+		get,
+		getOne,
+		update
 	}
 })
