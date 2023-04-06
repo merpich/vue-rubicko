@@ -40,15 +40,15 @@
 </script>
 
 <template>
-	<div class="border-t-2 border-slate-600 bg-slate-800">
+	<div class="bg-[#303130]">
 		<div class="flex">
-			<div class="border-b-2 border-r-2 border-slate-600 rounded-br-2xl"></div>
-			<h2 class="px-3 py-1 text-white inline-block">{{ label }}</h2>
-			<div class="w-full border-b-2 border-l-2 border-slate-600 rounded-bl-2xl"></div>
+			<div class="border-b-2 border-r-2 border-neutral-700"></div>
+			<h2 class="px-3 py-1 text-white inline-block border-t-2 border-neutral-700">{{ label }}</h2>
+			<div class="w-full border-b-2 border-l-2 border-neutral-700"></div>
 		</div>
 
 		<VAceEditor
-			class="h-80 border-l-2 border-slate-600"
+			class="h-48 lg:h-80 border-l-2 border-neutral-700"
 			theme="cloud9_night_low_color"
 			:lang="lang"
 			:options="options"
