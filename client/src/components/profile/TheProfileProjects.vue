@@ -1,24 +1,32 @@
 <script setup>
-	import { computed } from 'vue'
+	import { ref, computed } from 'vue'
 	import { useUserStore } from '../../stores/user'
 	import { useProjectStore } from '../../stores/project'
 
-	import { BaseButton } from '../base'
+	import { BaseButton, BaseModal } from '../base'
 	import ProjectItem from '../project/ProjectItem.vue'
+
+	const isOpen = ref(false)
 
 	const userStore = useUserStore()
 	const projectStore = useProjectStore()
 
 	const projects = computed(() => projectStore.projects.filter((item, index) => index < 4))
+
+	const openModal = () => isOpen.value = true
+	const closeModal = () => isOpen.value = false
 </script>
 
 <template>
 	<section class="grid gap-6">
 		<header class="flex items-center justify-between">
 			<h2 class="text-xl sm:text-2xl text-slate-900 font-semibold">Проекты</h2>
-			<BaseButton v-if="userStore.isAuth">
+			<BaseButton @click="openModal" v-if="userStore.isAuth">
 				Создать проект
 			</BaseButton>
+			<BaseModal @close="closeModal" v-if="isOpen">
+
+			</BaseModal>
 		</header>
 		<div class="grid sm:grid-cols-2 gap-4">
 			<ProjectItem
