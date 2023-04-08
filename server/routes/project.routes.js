@@ -1,8 +1,9 @@
 import { Router } from 'express'
 
+import * as ProjectValidation from '../validations/project.validation.js'
 import * as ProjectController from '../controllers/project.controller.js'
 
-import { checkAuth } from '../middlewares/app.middleware.js'
+import { checkAuth, handleValidationErrors } from '../middlewares/app.middleware.js'
 
 const router = new Router()
 
@@ -12,6 +13,8 @@ router.route('/')
 	)
 	.post(
 		checkAuth,
+		ProjectValidation.createValidation,
+		handleValidationErrors,
 		ProjectController.createProject
 	)
 
