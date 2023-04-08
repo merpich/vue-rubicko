@@ -12,8 +12,8 @@
 <template>
 	<ul>
 		<SidebarMenuItem :url="profileUrl" label="Мой профиль" />
-		<SidebarMenuItem url="/projects" label="Проекты" />
-		<SidebarMenuItem url="/posts" label="Статьи" />
+		<SidebarMenuItem url="/projects" label="Мои проекты" />
+		<SidebarMenuItem url="/posts" label="Мои статьи" />
 		<SidebarMenuItem url="/news" label="Новости" />
 	</ul>
 	<hr class="bg-slate-200 my-2">
