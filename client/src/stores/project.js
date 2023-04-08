@@ -24,6 +24,22 @@ export const useProjectStore = defineStore('project', () => {
 		}
 	}
 
+	const create = async (projectName) => {
+		try {
+			const response = await axios.post('/project/', { title: projectName }, {
+				headers: {
+					Authorization: localStorage.getItem('token')
+				}
+			})
+			projectData.value = { ...response.data }
+		} catch (error) {
+			if (error.response) {
+				return error.response.data
+			}
+			return [{ param: 'network', msg: 'Ошибка сети' }]
+		}
+	}
+
 	const update = async () => {
 		try {
 			await axios.patch('/project/' + projectData.value._id, projectData.value, {
@@ -41,6 +57,7 @@ export const useProjectStore = defineStore('project', () => {
 		projectData,
 		get,
 		getOne,
+		create,
 		update
 	}
 })

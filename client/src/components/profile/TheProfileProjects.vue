@@ -3,8 +3,9 @@
 	import { useUserStore } from '../../stores/user'
 	import { useProjectStore } from '../../stores/project'
 
-	import { BaseButton, BaseModal } from '../base'
+	import { BaseButton } from '../base'
 	import ProjectItem from '../project/ProjectItem.vue'
+	import ProjectModal from '../project/ProjectModal.vue'
 
 	const isOpen = ref(false)
 
@@ -24,9 +25,7 @@
 			<BaseButton @click="openModal" v-if="userStore.isAuth">
 				Создать проект
 			</BaseButton>
-			<BaseModal @close="closeModal" v-if="isOpen">
-
-			</BaseModal>
+			<ProjectModal @close="closeModal" v-if="isOpen" />
 		</header>
 		<div class="grid sm:grid-cols-2 gap-4">
 			<ProjectItem
