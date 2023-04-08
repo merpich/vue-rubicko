@@ -22,7 +22,7 @@
 		<CodeWorkspace
 			label="JavaScript"
 			lang="javascript"
-			v-model="projectData.js"
+			v-model="projectData.javaScript"
 		/>
 	</div>
 </template>

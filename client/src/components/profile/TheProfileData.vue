@@ -24,7 +24,7 @@
 			<p class="text-lg sm:text-xl text-slate-900 font-medium" v-if="fullName">{{ fullName }}</p>
 			<p class="text-sm sm:text-base text-slate-900" v-if="userBio">{{ userBio }}</p>
 		</div>
-		<RouterLink class="text-blue-500 text-sm hover:underline" to="settings" v-if="userStore.isAuth">
+		<RouterLink class="text-blue-500 text-sm hover:underline focus-visible:underline outline-none" to="settings" v-if="userStore.isAuth">
 			Редактировать
 		</RouterLink>
 	</div>
