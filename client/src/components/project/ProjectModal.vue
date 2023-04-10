@@ -15,7 +15,7 @@
 	const createProject = async () => {
 		const response = await projectStore.create(projectTitle.value)
 
-		if (response[0]) {
+		if (response) {
 			error.value = response[0].msg
 			return
 		}
