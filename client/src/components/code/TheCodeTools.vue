@@ -1,7 +1,7 @@
 <script setup>
 	import { ref, computed } from 'vue'
-
 	import { useProjectStore } from '../../stores/project'
+	import CodeModal from './СodeModal.vue'
 
 	defineProps({
 		isAuth: {
@@ -11,13 +11,22 @@
 	})
 
 	const isOpen = ref(false)
-
+	const isOpenModal = ref(false)
 	const projectStore = useProjectStore()
 
 	const title = computed(() => projectStore.projectData.title)
 	const classes = computed(() => isOpen.value ? 'fill-white rotate-180' : 'fill-white')
 
 	const switchMenu = () => isOpen.value = !isOpen.value
+
+	const openModal = () => {
+		isOpen.value = false
+		isOpenModal.value = true
+	}
+
+	const closeModal = () => {
+		isOpenModal.value = false
+	}
 
 	const save = async () => {
 		await projectStore.update()
@@ -40,6 +49,11 @@
 			<li>
 				<button class="w-full text-start py-1 cursor-pointer hover:underline" @click="save">Сохранить</button>
 			</li>
+			<li>
+				<button class="w-full text-start py-1 cursor-pointer hover:underline" @click="openModal">Удалить</button>
+			</li>
 		</ul>
+
+		<CodeModal @close="closeModal" v-if="isOpenModal" />
 	</div>
 </template>

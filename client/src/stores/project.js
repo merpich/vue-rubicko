@@ -52,12 +52,25 @@ export const useProjectStore = defineStore('project', () => {
 		}
 	}
 
+	const remove = async () => {
+		try {
+			await axios.delete('/project/' + projectData.value._id, {
+				headers: {
+					Authorization: localStorage.getItem('token')
+				}
+			})
+		} catch (error) {
+
+		}
+	}
+
 	return {
 		projects,
 		projectData,
 		get,
 		getOne,
 		create,
-		update
+		update,
+		remove
 	}
 })
