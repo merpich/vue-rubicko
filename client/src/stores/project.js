@@ -64,6 +64,24 @@ export const useProjectStore = defineStore('project', () => {
 		}
 	}
 
+	const like = async (projectId) => {
+		try {
+			const response = await axios.patch('/project/like/' + projectId, {}, {
+				headers: {
+					Authorization: localStorage.getItem('token')
+				}
+			})
+
+			projects.value.forEach(project => {
+				if (project._id === response.data._id) {
+					project.liked = response.data.liked
+				}
+			})
+		} catch (error) {
+
+		}
+	}
+
 	return {
 		projects,
 		projectData,
@@ -71,6 +89,7 @@ export const useProjectStore = defineStore('project', () => {
 		getOne,
 		create,
 		update,
-		remove
+		remove,
+		like
 	}
 })

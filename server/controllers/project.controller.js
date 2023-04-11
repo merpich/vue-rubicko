@@ -86,6 +86,12 @@ export const deleteProject = async (req, res) => {
 			})
 		}
 
+		if (req.userId !== project.userId) {
+			return res.status(403).json({
+				msg: 'Доступ запрещен'
+			})
+		}
+
 		project.deleteOne()
 
 		res.status(200).json({
@@ -125,9 +131,7 @@ export const likeProject = async (req, res) => {
 
 		project.save()
 
-		res.status(200).json({
-			success: true
-		})
+		res.status(200).json(project)
 	} catch (error) {
 		console.log(error)
 		res.status(500).json({
