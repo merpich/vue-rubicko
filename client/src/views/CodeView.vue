@@ -30,7 +30,7 @@
 </script>
 
 <template>
-	<TheCodeHeader isAuth />
+	<TheCodeHeader :isAuth="isAuth" />
 	<BaseLoader class="mx-auto my-10" v-if="isLoading" />
 	<div class="grid grid-rows-[auto_1fr] h-[calc(100%-3.5rem)]" v-if="!isLoading">
 		<TheCodeEditor />

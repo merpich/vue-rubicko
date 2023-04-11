@@ -14,7 +14,7 @@
 <template>
 	<header class="py-2 px-3 grid grid-cols-[1fr_10fr_1fr] items-center bg-slate-800 relative z-10">
 		<BaseLogo />
-		<TheCodeTools class="justify-self-center" isAuth />
+		<TheCodeTools class="justify-self-center" :isAuth="isAuth" />
 		<TheHeaderControls class="justify-self-end" />
 	</header>
 </template>
