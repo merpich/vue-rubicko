@@ -86,7 +86,9 @@ export const deleteProject = async (req, res) => {
 			})
 		}
 
-		if (req.userId !== project.userId) {
+		const projectUserId = JSON.parse(JSON.stringify(project.userId))
+
+		if (req.userId !== projectUserId) {
 			return res.status(403).json({
 				msg: 'Доступ запрещен'
 			})
