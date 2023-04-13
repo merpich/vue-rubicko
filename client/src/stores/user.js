@@ -58,11 +58,10 @@ export const useUserStore = defineStore('user', () => {
 	 const get = async (userName) => {
 		try {
 			await getMe()
+
 			const response = await axios.get('/user/' + userName)
 			const user = response.data
 
-			console.log(user._id)
-			console.log(userData.value._id)
 			isAuth.value = user._id === userData.value._id
 
 			return response.data

@@ -2,6 +2,7 @@
 	import { computed } from 'vue'
 	import { RouterLink } from 'vue-router'
 	import { useUserStore } from '../../stores/user'
+	import { BaseLink } from '../base'
 
 	const props = defineProps({
 		userData: {
@@ -24,8 +25,9 @@
 			<p class="text-lg sm:text-xl text-slate-900 font-medium" v-if="fullName">{{ fullName }}</p>
 			<p class="text-sm sm:text-base text-slate-900" v-if="userBio">{{ userBio }}</p>
 		</div>
-		<RouterLink class="text-blue-500 text-sm hover:underline focus-visible:underline outline-none" to="settings" v-if="userStore.isAuth">
+
+		<BaseLink url="/settings" v-if="userStore.isAuth">
 			Редактировать
-		</RouterLink>
+		</BaseLink>
 	</div>
 </template>

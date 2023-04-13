@@ -59,18 +59,34 @@
 		<form class="max-w-xs grid gap-4" method="post" @submit.prevent>
 			<div class="grid">
 				<BaseLabel text="Никнейм" for="userName" />
-				<BaseInput type="text" id="userName" :value="userData.userName" v-model="userData.userName" />
+				<BaseInput
+					type="text"
+					id="userName"
+					:value="userData.userName"
+					v-model="userData.userName"
+				/>
 				<p class="text-red-500" v-if="errors.userName">{{ errors.userName }}</p>
 				<p class="text-red-500" v-if="errors.network">{{ errors.network }}</p>
 			</div>
 			<div class="grid">
 				<BaseLabel text="Имя" for="name" />
-				<BaseInput type="text" id="name" :value="userData.fullName" v-model="userData.fullName" />
+				<BaseInput
+					type="text"
+					id="name"
+					:value="userData.fullName"
+					v-model="userData.fullName"
+				/>
 				<p class="text-red-500" v-if="errors.fullName">{{ errors.fullName }}</p>
 			</div>
 			<div class="grid">
 				<BaseLabel text="О себе" for="userBio" />
-				<BaseTextarea id="userBio" cols="30" rows="5" :value="userData.userBio" v-model="userData.userBio" />
+				<BaseTextarea
+					id="userBio"
+					cols="30"
+					rows="5"
+					:value="userData.userBio"
+					v-model="userData.userBio"
+				/>
 				<p class="text-red-500" v-if="errors.userBio">{{ errors.userBio }}</p>
 			</div>
 			<BaseButton class="justify-self-start" @click="saveData">

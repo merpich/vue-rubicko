@@ -3,7 +3,7 @@
 	import { useUserStore } from '../../stores/user'
 	import { useProjectStore } from '../../stores/project'
 
-	import { BaseButton } from '../base'
+	import { BaseButton, BaseLink } from '../base'
 	import ProjectItem from '../project/ProjectItem.vue'
 	import ProjectModal from '../project/ProjectModal.vue'
 
@@ -12,7 +12,7 @@
 	const userStore = useUserStore()
 	const projectStore = useProjectStore()
 
-	const projects = computed(() => projectStore.projects.filter((item, index) => index < 4))
+	const projects = computed(() => projectStore.projects.reverse().filter((item, index) => index < 4))
 
 	const openModal = () => isOpen.value = true
 	const closeModal = () => isOpen.value = false
@@ -34,5 +34,8 @@
 				:data="{ ...project }"
 			/>
 		</div>
+		<BaseLink url="/projects">
+			Смотреть все проекты
+		</BaseLink>
 	</section>
 </template>

@@ -5,6 +5,7 @@ import BaseFile from './BaseFile.vue'
 import BaseLabel from './BaseLabel.vue'
 import BaseInput from './BaseInput.vue'
 import BaseTextarea from './BaseTextarea.vue'
+import BaseLink from './BaseLink.vue'
 import BaseModal from './BaseModal.vue'
 
 export {
@@ -15,5 +16,6 @@ export {
 	BaseLabel,
 	BaseInput,
 	BaseTextarea,
+	BaseLink,
 	BaseModal
 }
