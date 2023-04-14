@@ -1,7 +1,7 @@
 <script setup>
 	import { ref, computed } from 'vue'
 	import { useProjectStore } from '../../stores/project'
-	import CodeModal from './СodeModal.vue'
+	import CodeModal from './CodeModal.vue'
 
 	defineProps({
 		isAuth: {
