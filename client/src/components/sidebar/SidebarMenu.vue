@@ -5,7 +5,7 @@
 
 	const userStore = useUserStore()
 	const profileUrl = computed(() => '/' + userStore.userData.userName)
-	const projectsUrl = computed(() => '/projects/' + userStore.userData._id)
+	const projectsUrl = computed(() => '/' + userStore.userData.userName + '/projects')
 
 	onBeforeMount(async () => await userStore.getMe())
 </script>

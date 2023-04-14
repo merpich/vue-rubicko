@@ -1,8 +1,10 @@
 <script setup>
 	import { useRouter } from 'vue-router'
+	import { useUserStore } from '../../stores/user'
 	import { useProjectStore } from '../../stores/project'
 	import { BaseModal, BaseButton } from '../base'
 
+	const userStore = useUserStore()
 	const projectStore = useProjectStore()
 	const router = useRouter()
 
@@ -11,7 +13,7 @@
 
 	const remove = async () => {
 		await projectStore.remove()
-		router.push('/projects')
+		router.push('/' + userStore.userData.userName + '/projects')
 	}
 </script>
 

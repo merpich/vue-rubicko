@@ -26,7 +26,7 @@ const routes = [
 	},
 
 	{
-		path: '/projects/:id',
+		path: '/:username/projects',
 		name: 'projects',
 		component: () => import('../views/ProjectsView.vue'),
 		meta: {

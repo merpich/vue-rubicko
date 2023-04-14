@@ -20,7 +20,7 @@
 	const projectStore = useProjectStore()
 
 	const projects = computed(() => projectStore.projects.reverse().filter((item, index) => index < 4))
-	const projectsUrl = computed(() => '/projects/' + props.userData._id)
+	const projectsUrl = computed(() => '/' + userStore.userData.userName + '/projects')
 
 	const openModal = () => isOpen.value = true
 	const closeModal = () => isOpen.value = false
