@@ -5,6 +5,7 @@
 
 	const userStore = useUserStore()
 	const profileUrl = computed(() => '/' + userStore.userData.userName)
+	const projectsUrl = computed(() => '/projects/' + userStore.userData._id)
 
 	onBeforeMount(async () => await userStore.getMe())
 </script>
@@ -12,7 +13,7 @@
 <template>
 	<ul>
 		<SidebarMenuItem :url="profileUrl" label="Мой профиль" />
-		<SidebarMenuItem url="/projects" label="Мои проекты" />
+		<SidebarMenuItem :url="projectsUrl" label="Мои проекты" />
 		<SidebarMenuItem url="/posts" label="Мои статьи" />
 		<SidebarMenuItem url="/news" label="Новости" />
 	</ul>

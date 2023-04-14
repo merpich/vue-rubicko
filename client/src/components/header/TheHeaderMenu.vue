@@ -15,6 +15,7 @@
 	}
 
 	const profileUrl = computed(() => '/' + userStore.userData.userName)
+	const projectsUrl = computed(() => '/projects/' + userStore.userData._id)
 
 	onBeforeMount(async () => await userStore.getMe())
 </script>
@@ -23,7 +24,7 @@
 	<nav class="absolute top-[calc(100%+1rem)] right-0 p-4 w-72 bg-white shadow rounded-2xl">
 		<ul>
 			<HeaderMenuLink :url="profileUrl" label="Мой профиль" />
-			<HeaderMenuLink url="/projects" label="Мои проекты" />
+			<HeaderMenuLink :url="projectsUrl" label="Мои проекты" />
 			<HeaderMenuLink url="/posts" label="Мои статьи" />
 			<HeaderMenuLink url="/news" label="Новости" />
 		</ul>

@@ -1,6 +1,5 @@
 <script setup>
 	import { computed } from 'vue'
-	import { RouterLink } from 'vue-router'
 	import { useUserStore } from '../../stores/user'
 	import { BaseLink } from '../base'
 

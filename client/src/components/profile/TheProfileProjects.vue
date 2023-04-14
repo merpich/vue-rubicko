@@ -7,12 +7,20 @@
 	import ProjectItem from '../project/ProjectItem.vue'
 	import ProjectModal from '../project/ProjectModal.vue'
 
+	const props = defineProps({
+		userData: {
+			type: Object,
+			required: true
+		}
+	})
+
 	const isOpen = ref(false)
 
 	const userStore = useUserStore()
 	const projectStore = useProjectStore()
 
 	const projects = computed(() => projectStore.projects.reverse().filter((item, index) => index < 4))
+	const projectsUrl = computed(() => '/projects/' + props.userData._id)
 
 	const openModal = () => isOpen.value = true
 	const closeModal = () => isOpen.value = false
@@ -34,7 +42,7 @@
 				:data="{ ...project }"
 			/>
 		</div>
-		<BaseLink url="/projects">
+		<BaseLink :url="projectsUrl">
 			Смотреть все проекты
 		</BaseLink>
 	</section>

@@ -47,7 +47,7 @@
 	<div class="grid gap-8 md:grid-cols-[4fr_8fr] md:items-start" v-if="!isLoading">
 		<TheProfile :userData="userData" />
 		<div class="grid gap-8">
-			<TheProfileProjects />
+			<TheProfileProjects :userData="userData" />
 			<TheProfilePosts />
 		</div>
 	</div>
