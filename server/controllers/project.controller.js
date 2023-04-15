@@ -14,7 +14,13 @@ export const getProject = async (req, res) => {
 				.populate('userId').exec()
 		} else {
 			return res.status(404).json({
-				message: 'Проект не найден'
+				msg: 'Проект не найден'
+			})
+		}
+
+		if (project.length < 1 ) {
+			return res.status(404).json({
+				msg: 'Проекты не найдены'
 			})
 		}
 
@@ -24,7 +30,7 @@ export const getProject = async (req, res) => {
 	} catch (error) {
 		console.log(error)
 		res.status(500).json({
-			message: 'Не удалось получить проект'
+			msg: 'Не удалось получить проект'
 		})
 	}
 }

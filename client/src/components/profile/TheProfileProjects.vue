@@ -4,6 +4,7 @@
 	import { useProjectStore } from '../../stores/project'
 
 	import { BaseButton, BaseLink } from '../base'
+	import ProjectNotFound from '../project/ProjectNotFound.vue'
 	import ProjectItem from '../project/ProjectItem.vue'
 	import ProjectModal from '../project/ProjectModal.vue'
 
@@ -35,14 +36,15 @@
 			</BaseButton>
 			<ProjectModal @close="closeModal" v-if="isOpen" />
 		</header>
-		<div class="grid sm:grid-cols-2 gap-4">
+		<ProjectNotFound v-if="projects.length < 1" />
+		<div class="grid sm:grid-cols-2 gap-4" v-if="projects.length > 0">
 			<ProjectItem
 				v-for="project in projects"
 				:key="project._id"
 				:data="{ ...project }"
 			/>
 		</div>
-		<BaseLink :url="projectsUrl">
+		<BaseLink :url="projectsUrl" v-if="projects.length > 0">
 			Смотреть все проекты
 		</BaseLink>
 	</section>
