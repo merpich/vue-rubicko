@@ -21,7 +21,7 @@
 			return
 		}
 
-		router.push('/' + userStore.userData.userName)
+		router.push(`/${userStore.userData.userName}`)
 	}
 </script>
 

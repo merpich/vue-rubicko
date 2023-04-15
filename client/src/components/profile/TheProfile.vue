@@ -11,8 +11,8 @@
 </script>
 
 <template>
-	<div class="grid md:grid-cols-none grid-cols-[4fr_8fr] items-start gap-6">
+	<section class="grid md:grid-cols-none grid-cols-[4fr_8fr] items-start gap-6">
 		<TheProfileAvatar :userData="userData" />
 		<TheProfileData :userData="userData" />
-	</div>
+	</section>
 </template>

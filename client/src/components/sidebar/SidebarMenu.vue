@@ -4,8 +4,8 @@
 	import SidebarMenuItem from './SidebarMenuItem.vue'
 
 	const userStore = useUserStore()
-	const profileUrl = computed(() => '/' + userStore.userData.userName)
-	const projectsUrl = computed(() => '/' + userStore.userData.userName + '/projects')
+	const profileUrl = computed(() => `/${userStore.userData.userName}`)
+	const projectsUrl = computed(() => `/${userStore.userData.userName}/projects`)
 
 	onBeforeMount(async () => await userStore.getMe())
 </script>

@@ -13,14 +13,14 @@
 
 	const remove = async () => {
 		await projectStore.remove()
-		router.push('/' + userStore.userData.userName + '/projects')
+		router.push(`/${userStore.userData.userName}/projects`)
 	}
 </script>
 
 <template>
 	<BaseModal title="Удаление проекта" @close="closeModal">
 		<div class="grid gap-4">
-			<p>
+			<p class="text-slate-900">
 				Удалить проект
 				<span class="font-bold">{{ projectStore.projectData.title }} </span>
 				?

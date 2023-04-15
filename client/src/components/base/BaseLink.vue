@@ -11,7 +11,7 @@
 
 <template>
 	<RouterLink
-		class="text-blue-500 hover:underline focus-visible:underline outline-none"
+		class="text-blue-600 hover:underline focus-visible:underline outline-none"
 		:to="url"
 	>
 		<slot></slot>

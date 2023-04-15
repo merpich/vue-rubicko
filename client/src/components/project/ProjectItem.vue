@@ -15,7 +15,7 @@
 	const userStore = useUserStore()
 	const projectStore = useProjectStore()
 
-	const url = computed(() => '/editor/' + props.data._id)
+	const url = computed(() => `/editor/${props.data._id}`)
 	const title = computed(() => props.data.title)
 	const date = computed(() => props.data.createdAt.split('T')[0])
 	const likes = computed(() => props.data.liked.length)
@@ -44,7 +44,7 @@
 			{{ title }}
 		</BaseLink>
 		<div class="flex justify-between">
-			<time datetime="2023-04-01" class="font-slate-900">
+			<time class="text-slate-900" datetime="2023-04-01">
 				{{ date }}
 			</time>
 			<button

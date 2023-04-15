@@ -19,7 +19,7 @@
 
 <template>
 	<li>
-		<RouterLink class="block py-1 hover:underline focus-visible:underline outline-none" :to="url">
+		<RouterLink class="block py-1 text-slate-900 hover:underline focus-visible:underline outline-none" :to="url">
 			{{ label }}
 		</RouterLink>
 	</li>

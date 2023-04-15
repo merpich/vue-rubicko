@@ -47,10 +47,10 @@
 
 		<ul class="absolute top-[calc(100%+2rem)] left-1/2 -translate-x-1/2 bg-white p-4 w-40 rounded-2xl" v-if="isOpen">
 			<li>
-				<button class="w-full text-start py-1 cursor-pointer hover:underline" @click="save">Сохранить</button>
+				<button class="w-full py-1 text-start text-slate-900 cursor-pointer hover:underline" @click="save">Сохранить</button>
 			</li>
 			<li>
-				<button class="w-full text-start py-1 cursor-pointer hover:underline" @click="openModal">Удалить</button>
+				<button class="w-full py-1 text-start text-slate-900 cursor-pointer hover:underline" @click="openModal">Удалить</button>
 			</li>
 		</ul>
 

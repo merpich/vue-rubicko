@@ -20,7 +20,7 @@
 			return
 		}
 
-		router.push('/editor/' + projectStore.projectData._id)
+		router.push(`/editor/${projectStore.projectData._id}`)
 	}
 </script>
 

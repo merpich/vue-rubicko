@@ -30,7 +30,7 @@
 	}
 
 	watch(
-		() => route.params.userid,
+		() => route.params.username,
 		() => fetchData()
 	)
 

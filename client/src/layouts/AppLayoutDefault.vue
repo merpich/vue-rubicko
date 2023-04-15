@@ -7,8 +7,8 @@
 	<TheHeader />
 	<div class="container py-24">
 		<TheSidebar />
-		<div class="lg:pl-48">
+		<main class="lg:pl-48">
 			<slot></slot>
-		</div>
+		</main>
 	</div>
 </template>

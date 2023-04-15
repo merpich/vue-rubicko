@@ -24,7 +24,7 @@
 
 <template>
 	<div class="grid gap-4">
-		<h2 class="text-lg font-semibold">Изображение профиля</h2>
+		<h2 class="text-lg text-slate-900 font-semibold">Изображение профиля</h2>
 		<div class="flex gap-4">
 			<div class="w-24 h-24 bg-white shadow rounded-full overflow-hidden flex items-center justify-center">
 				<svg v-if="!src" xmlns="http://www.w3.org/2000/svg" class="fill-slate-500" width="32" height="32" viewBox="0 0 256 256">

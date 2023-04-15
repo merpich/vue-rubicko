@@ -55,7 +55,7 @@
 
 <template>
 	<div class="grid gap-4">
-		<h2 class="text-lg font-semibold">Данные профиля</h2>
+		<h2 class="text-lg text-slate-900 font-semibold">Данные профиля</h2>
 		<form class="max-w-xs grid gap-4" method="post" @submit.prevent>
 			<div class="grid">
 				<BaseLabel text="Никнейм" for="userName" />
