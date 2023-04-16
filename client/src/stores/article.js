@@ -2,9 +2,9 @@ import { ref } from 'vue'
 import { defineStore } from 'pinia'
 import axios from '../axios'
 
-export const usePostStore = defineStore('post', () => {
-	const posts = ref([])
-	const postData = ref({})
+export const useArticleStore = defineStore('post', () => {
+	const articles = ref([])
+	const articleData = ref({})
 
 	const get = async (userId) => {
 		try {
@@ -16,7 +16,8 @@ export const usePostStore = defineStore('post', () => {
 	}
 
 	return {
-		posts,
+		articles,
+		articleData,
 		get
 	}
 })

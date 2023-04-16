@@ -4,12 +4,12 @@
 
 	import { useUserStore } from '../stores/user'
 	import { useProjectStore } from '../stores/project'
-	import { usePostStore } from '../stores/post'
+	import { useArticleStore } from '../stores/article'
 
 	import { BaseLoader } from '../components/base'
 	import TheProfile from '../components/profile/TheProfile.vue'
 	import TheProfileProjects from '../components/profile/TheProfileProjects.vue'
-	import TheProfilePosts from '../components/profile/TheProfilePosts.vue'
+	import TheProfileArticles from '../components/profile/TheProfileArticles.vue'
 
 	const userData = ref({})
 	const isLoading = ref(false)
@@ -18,7 +18,7 @@
 
 	const userStore = useUserStore()
 	const projectStore = useProjectStore()
-	const postStore = usePostStore()
+	const articleStore = useArticleStore()
 
 	const fetchData = async () => {
 		try {
@@ -26,7 +26,7 @@
 
 			userData.value = await userStore.get(route.params.username)
 			await projectStore.get(userData.value._id)
-			await postStore.get(userData.value._id)
+			await articleStore.get(userData.value._id)
 
 			isLoading.value = false
 		} catch (error) {
@@ -48,7 +48,7 @@
 		<TheProfile :userData="userData" />
 		<div class="grid gap-8">
 			<TheProfileProjects :userData="userData" />
-			<TheProfilePosts />
+			<TheProfileArticles />
 		</div>
 	</div>
 </template>

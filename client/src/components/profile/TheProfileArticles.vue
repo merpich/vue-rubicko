@@ -1,15 +1,16 @@
 <script setup>
 	import { computed } from 'vue'
 	import { useUserStore } from '../../stores/user'
-	import { usePostStore } from '../../stores/post'
+	import { useArticleStore } from '../../stores/article'
 
 	import { BaseButton } from '../base'
 	import ArticleItem from '../article/ArticleItem.vue'
+	import ArticleNotFound from '../article/ArticleNotFound.vue'
 
 	const userStore = useUserStore()
-	const postStore = usePostStore()
+	const articleStore = useArticleStore()
 
-	const posts = computed(() => postStore.posts.filter((item, index) => index < 4))
+	const articles = computed(() => articleStore.articles.filter((item, index) => index < 4))
 </script>
 
 <template>
@@ -20,11 +21,12 @@
 				Создать статью
 			</BaseButton>
 		</header>
-		<div class="grid gap-4">
+		<ArticleNotFound v-if="articles.length < 1" />
+		<div class="grid gap-4" v-if="articles.length > 0">
 			<ArticleItem
-				v-for="post in posts"
-				:key="post._id"
-				:data="{ ...post }"
+				v-for="article in articles"
+				:key="article._id"
+				:data="{ ...article }"
 			/>
 		</div>
 	</section>
