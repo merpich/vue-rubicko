@@ -5,7 +5,7 @@
 	import { useUserStore } from '../../stores/user'
 	import { useArticleStore } from '../../stores/article'
 
-	import { BaseButton } from '../base'
+	import { BaseButton, BaseLink } from '../base'
 	import ArticleItem from '../article/ArticleItem.vue'
 	import ArticleNotFound from '../article/ArticleNotFound.vue'
 
@@ -14,7 +14,8 @@
 	const userStore = useUserStore()
 	const articleStore = useArticleStore()
 
-	const articles = computed(() => articleStore.articles.filter((item, index) => index < 4))
+	const articles = computed(() => articleStore.articles.reverse().filter((item, index) => index < 2))
+	const articlesUrl = computed(() => `/${userStore.userData.userName}/articles`)
 
 	const goToArticleEditor = () => {
 		router.push('/article/editor')
@@ -37,5 +38,8 @@
 				:articleData="{ ...article }"
 			/>
 		</div>
+		<BaseLink :url="articlesUrl" v-if="articles.length > 0">
+			Смотреть все статьи
+		</BaseLink>
 	</section>
 </template>

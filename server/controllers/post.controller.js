@@ -50,7 +50,7 @@ export const createPost = async (req, res) => {
 		})
 
 		if (req.file) {
-			document.imageUrl = `/uploads/avatars/${req.file.filename}`
+			document.imageUrl = `/uploads/posts/${req.file.filename}`
 		}
 
 		const post = await document.save()

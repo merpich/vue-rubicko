@@ -36,6 +36,16 @@ const routes = [
 	},
 
 	{
+		path: '/:username/articles',
+		name: 'articles',
+		component: () => import('../views/ArticlesView.vue'),
+		meta: {
+			requiredAuth: true,
+			layout: 'AppLayoutDefault'
+		}
+	},
+
+	{
 		path: '/editor/:id',
 		name: 'editor',
 		component: () => import('../views/CodeView.vue'),
