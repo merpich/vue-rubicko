@@ -46,9 +46,7 @@
 <template>
 	<article class="bg-white shadow rounded-2xl overflow-hidden">
 		<div class="relative pb-[40%]" v-if="src">
-			<div class=" absolute top-0 bottom-0 right-0 left-0">
-				<img class="w-ful h-full object-cover" :src="src" alt="">
-			</div>
+			<img class="absolute top-0 left-0 w-full h-full object-cover" :src="src" alt="">
 		</div>
 		<div class="grid gap-4 px-6 py-4">
 			<RouterLink class="text-slate-900 hover:text-blue-600 transition-colors" :to="href">
