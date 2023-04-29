@@ -15,9 +15,20 @@ export const useArticleStore = defineStore('post', () => {
 		}
 	}
 
+	const craeate = async (formData) => {
+		const response = await axios.post('/post', formData, {
+			headers: {
+				Authorization: localStorage.getItem('token')
+			}
+		})
+
+		articleData.value = response.data
+	}
+
 	return {
 		articles,
 		articleData,
-		get
+		get,
+		craeate
 	}
 })

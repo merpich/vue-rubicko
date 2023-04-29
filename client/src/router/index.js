@@ -45,9 +45,29 @@ const routes = [
 	},
 
 	{
-		path: '/posts',
-		name: 'posts',
-		component: () => import('../views/PostsView.vue'),
+		path: '/:username/articles',
+		name: 'articles',
+		component: () => import('../views/ArticlesView.vue'),
+		meta: {
+			requiredAuth: true,
+			layout: 'AppLayoutDefault'
+		}
+	},
+
+	{
+		path: '/article/:id',
+		name: 'article',
+		component: () => import('../views/ArticleView.vue'),
+		meta: {
+			requiredAuth: true,
+			layout: 'AppLayoutDefault'
+		}
+	},
+
+	{
+		path: '/article/editor',
+		name: 'articleEditor',
+		component: () => import('../views/ArticleEditorView.vue'),
 		meta: {
 			requiredAuth: true,
 			layout: 'AppLayoutDefault'

@@ -1,5 +1,4 @@
 import PostModel from '../models/post.model.js'
-import CategoryModel from '../models/category.model.js'
 
 export const getPosts = async (req, res) => {
 	try {
@@ -17,13 +16,11 @@ export const getPosts = async (req, res) => {
 			posts = await PostModel
 				.find({ categoryId: category })
 				.populate('userId')
-				.populate('categoryId')
 				.exec()
-		} else if (req.query.user) {
+		} else if (req.query.post) {
 			posts = await PostModel
 				.find({ userId: req.query.user })
 				.populate('userId')
-				.populate('categoryId')
 				.exec()
 		} else {
 			return res.status(404).json({
@@ -58,9 +55,8 @@ export const getPosts = async (req, res) => {
 export const getPost = async (req, res) => {
 	try {
 		const post = await PostModel
-			.findOne({ _id: req.params.id })
+			.findOne({ _id: req.query.post })
 			.populate('userId')
-			.populate('categoryId')
 			.exec()
 
 		if (!post) {
@@ -94,11 +90,9 @@ export const createPost = async (req, res) => {
 			document.imageUrl = `/uploads/avatars/${req.file.filename}`
 		}
 
-		await document.save()
+		const post = await document.save()
 
-		res.status(201).json({
-			success: true
-		})
+		res.status(201).json(post)
 	} catch (error) {
 		console.log(error)
 		res.status(500).json({
