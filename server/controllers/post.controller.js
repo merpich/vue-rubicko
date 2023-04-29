@@ -1,41 +1,31 @@
 import PostModel from '../models/post.model.js'
 
-export const getPosts = async (req, res) => {
+export const getPost = async (req, res) => {
 	try {
-		let posts = null
+		let post = null
 
-		if (req.query.category) {
-			const category = await CategoryModel.find({ title: req.query.category })
-
-			if (!category || category.length === 0) {
-				return res.status(404).json({
-					message: 'Статьи не найдены'
-				})
-			}
-
-			posts = await PostModel
-				.find({ categoryId: category })
-				.populate('userId')
-				.exec()
-		} else if (req.query.post) {
-			posts = await PostModel
+		if (req.query.user) {
+			post = await PostModel
 				.find({ userId: req.query.user })
-				.populate('userId')
-				.exec()
+				.populate('userId').exec()
+		} else if (req.params.id) {
+			post = await PostModel
+				.findOne({ _id: req.params.id })
+				.populate('userId').exec()
 		} else {
 			return res.status(404).json({
-				message: 'Статьи не найдены'
+				msg: 'Статья не найдена'
 			})
 		}
 
-		if (posts.length === 0) {
+		if (post.length < 0) {
 			return res.status(404).json({
 				message: 'Статьи не найдены'
 			})
 		}
 
-		const postsFiltered = posts.map(post => {
-			const data = JSON.parse(JSON.stringify(post))
+		const postFiltered = post.map(item => {
+			const data = JSON.parse(JSON.stringify(item))
 
 			delete data.userId.passwordHash
 			delete data.userId.email
@@ -43,38 +33,11 @@ export const getPosts = async (req, res) => {
 			return data
 		})
 
-		res.status(200).json(postsFiltered)
-	} catch (error) {
-		console.log(error)
-		res.status(500).json({
-			message: 'Не удалось получить статьи'
-		})
-	}
-}
-
-export const getPost = async (req, res) => {
-	try {
-		const post = await PostModel
-			.findOne({ _id: req.query.post })
-			.populate('userId')
-			.exec()
-
-		if (!post) {
-			return res.status(404).json({
-				message: 'Статья не найдена'
-			})
-		}
-
-		const postFiltered = JSON.parse(JSON.stringify(post))
-
-		delete postFiltered.userId.passwordHash
-		delete postFiltered.userId.email
-
 		res.status(200).json(postFiltered)
 	} catch (error) {
 		console.log(error)
 		res.status(500).json({
-			message: 'Не удалось получить статью'
+			message: 'Не удалось получить статьи'
 		})
 	}
 }
@@ -120,7 +83,7 @@ export const updatePost = async (req, res) => {
 		}
 
 		if (req.file) {
-			post.imageUrl = `/uploads/avatars/${req.file.filename}`
+			post.imageUrl = `/uploads/posts/${req.file.filename}`
 		}
 
 		post.save()
@@ -179,9 +142,7 @@ export const likePost = async (req, res) => {
 
 		post.save()
 
-		res.status(200).json({
-			success: true
-		})
+		res.status(200).json(post)
 	} catch (error) {
 		console.log(error)
 		res.status(500).json({

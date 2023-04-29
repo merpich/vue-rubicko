@@ -9,7 +9,7 @@ const uploadImage = uploadFile('uploads/posts', 'image')
 
 router.route('/')
 	.get(
-		PostController.getPosts
+		PostController.getPost
 	)
 	.post(
 		checkAuth,

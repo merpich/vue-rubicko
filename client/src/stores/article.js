@@ -9,7 +9,8 @@ export const useArticleStore = defineStore('post', () => {
 	const get = async (userId) => {
 		try {
 			const response = await axios.get('/post?user=' + userId)
-			posts.value = [ ...response.data ]
+
+			articles.value = [ ...response.data ]
 		} catch (error) {
 
 		}
@@ -25,10 +26,29 @@ export const useArticleStore = defineStore('post', () => {
 		articleData.value = response.data
 	}
 
+	const like = async (articletId) => {
+		try {
+			const response = await axios.patch('/post/like/' + articletId, {}, {
+				headers: {
+					Authorization: localStorage.getItem('token')
+				}
+			})
+
+			articles.value.forEach(article => {
+				if (article._id === response.data._id) {
+					article.liked = response.data.liked
+				}
+			})
+		} catch (error) {
+
+		}
+	}
+
 	return {
 		articles,
 		articleData,
 		get,
-		craeate
+		craeate,
+		like
 	}
 })

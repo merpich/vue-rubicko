@@ -34,7 +34,7 @@
 			<ArticleItem
 				v-for="article in articles"
 				:key="article._id"
-				:data="{ ...article }"
+				:articleData="{ ...article }"
 			/>
 		</div>
 	</section>
