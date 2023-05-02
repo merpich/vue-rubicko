@@ -25,7 +25,7 @@ export const useArticleStore = defineStore('post', () => {
 		}
 	}
 
-	const craeate = async (formData) => {
+	const create = async (formData) => {
 		const response = await axios.post('/post', formData, {
 			headers: {
 				Authorization: localStorage.getItem('token')
@@ -33,6 +33,20 @@ export const useArticleStore = defineStore('post', () => {
 		})
 
 		articleData.value = response.data
+	}
+
+	const update = async (articleId, formData) => {
+		try {
+			const response = await axios.patch('/post/' + articleId, formData, {
+				headers: {
+					Authorization: localStorage.getItem('token')
+				}
+			})
+
+			articleData.value = { ...response.data }
+		} catch (error) {
+
+		}
 	}
 
 	const like = async (articletId) => {
@@ -72,7 +86,8 @@ export const useArticleStore = defineStore('post', () => {
 		articleData,
 		get,
 		getOne,
-		craeate,
+		create,
+		update,
 		like,
 		likeOne
 	}

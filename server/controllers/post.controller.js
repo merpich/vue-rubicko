@@ -88,9 +88,7 @@ export const updatePost = async (req, res) => {
 
 		post.save()
 
-		res.status(200).json({
-			success: true
-		})
+		res.status(200).json(post)
 	} catch (error) {
 		console.log(error)
 		res.status(500).json({

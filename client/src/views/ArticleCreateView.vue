@@ -1,11 +1,8 @@
 <script setup>
-	import { onBeforeMount, ref } from 'vue'
-	import { useRoute } from 'vue-router'
+	import { ref } from 'vue'
+	import { useRouter } from 'vue-router'
 
-	import { useUserStore } from '../stores/user'
 	import { useArticleStore } from '../stores/article'
-
-	import ArticleModal from '../components/article/ArticleModal.vue'
 
 	import {
 		BaseLabel, BaseFile, BaseInput,
@@ -18,14 +15,8 @@
 		image: ''
 	})
 
-	const isOpen = ref(false)
-
-	const userStore = useUserStore()
 	const articleStore = useArticleStore()
-	const route = useRoute()
-
-	const openModal = () => isOpen.value = true
-	const closeModal = () => isOpen.value = false
+	const router = useRouter()
 
 	const uploadImage = (event) => {
 		 articleData.value.image = event.target.files[0]
@@ -34,32 +25,19 @@
 	const updateArtice = async () => {
 		const formData = new FormData()
 
-		if (articleData.value.image) {
-			formData.append('image', articleData.value.image)
-		}
-
+		formData.append('image', articleData.value.image)
 		formData.append('title', articleData.value.title)
 		formData.append('text', articleData.value.text)
 
-		await articleStore.update(formData)
+		await articleStore.create(formData)
+
+		router.push(`/article/${articleStore.articleData._id}`)
 	}
-
-	const fetchData = async () => {
-		await userStore.getMe()
-		await articleStore.getOne(route.params.id)
-	}
-
-	onBeforeMount(async () => {
-		await fetchData()
-
-		articleData.value.title = articleStore.articleData.title
-		articleData.value.text = articleStore.articleData.text
-	})
 </script>
 
 <template>
 	<div class="grid gap-8">
-		<h1 class="text-2xl text-slate-900 font-bold">Редактирование статьи</h1>
+		<h1 class="text-2xl text-slate-900 font-bold">Создание статьи</h1>
 
 		<form class="grid gap-4" method="post" enctype="multipart/form-data" @submit.prevent="updateArtice">
 			<div class="grid max-w-md">
@@ -76,7 +54,6 @@
 					type="text"
 					id="title"
 					name="title"
-					:value="articleData.title"
 					v-model="articleData.title"
 				/>
 			</div>
@@ -86,26 +63,13 @@
 					id="content"
 					rows="10"
 					name="content"
-					:value="articleData.text"
 					v-model="articleData.text"
 				/>
 			</div>
 
-			<div class="flex gap-4">
-				<BaseButton class="justify-self-start">
-					Обновить
-				</BaseButton>
-				<BaseButton
-					class="justify-self-start"
-					color="red"
-					type="button"
-					@click="openModal"
-				>
-					Удалить
-				</BaseButton>
-			</div>
+			<BaseButton class="justify-self-start">
+				Создать
+			</BaseButton>
 		</form>
 	</div>
-
-	<ArticleModal @close="closeModal" v-if="isOpen" />
 </template>
