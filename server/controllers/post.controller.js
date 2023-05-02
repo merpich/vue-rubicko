@@ -24,16 +24,16 @@ export const getPost = async (req, res) => {
 			})
 		}
 
-		const postFiltered = post.map(item => {
-			const data = JSON.parse(JSON.stringify(item))
+		// const postFiltered = post.map(item => {
+		// 	const data = JSON.parse(JSON.stringify(item))
 
-			delete data.userId.passwordHash
-			delete data.userId.email
+		// 	delete data.userId.passwordHash
+		// 	delete data.userId.email
 
-			return data
-		})
+		// 	return data
+		// })
 
-		res.status(200).json(postFiltered)
+		res.status(200).json(post)
 	} catch (error) {
 		console.log(error)
 		res.status(500).json({
