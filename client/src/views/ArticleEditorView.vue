@@ -13,6 +13,7 @@
 	} from '../components/base'
 
 	const articleData = ref({
+		_id: '',
 		title: '',
 		text: '',
 		image: ''
@@ -41,7 +42,7 @@
 		formData.append('title', articleData.value.title)
 		formData.append('text', articleData.value.text)
 
-		await articleStore.update(formData)
+		await articleStore.update(articleData.value._id, formData)
 	}
 
 	const fetchData = async () => {
@@ -52,6 +53,7 @@
 	onBeforeMount(async () => {
 		await fetchData()
 
+		articleData.value._id = articleStore.articleData._id
 		articleData.value.title = articleStore.articleData.title
 		articleData.value.text = articleStore.articleData.text
 	})
