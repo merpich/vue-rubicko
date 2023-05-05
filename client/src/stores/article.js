@@ -26,13 +26,17 @@ export const useArticleStore = defineStore('post', () => {
 	}
 
 	const create = async (formData) => {
-		const response = await axios.post('/post', formData, {
-			headers: {
-				Authorization: localStorage.getItem('token')
-			}
-		})
+		try {
+			const response = await axios.post('/post', formData, {
+				headers: {
+					Authorization: localStorage.getItem('token')
+				}
+			})
 
-		articleData.value = response.data
+			articleData.value = response.data
+		} catch (error) {
+
+		}
 	}
 
 	const update = async (articleId, formData) => {
@@ -44,6 +48,18 @@ export const useArticleStore = defineStore('post', () => {
 			})
 
 			articleData.value = { ...response.data }
+		} catch (error) {
+
+		}
+	}
+
+	const remove = async () => {
+		try {
+			await axios.delete('/post/' + articleData.value._id, {
+				headers: {
+					Authorization: localStorage.getItem('token')
+				}
+			})
 		} catch (error) {
 
 		}
@@ -88,6 +104,7 @@ export const useArticleStore = defineStore('post', () => {
 		getOne,
 		create,
 		update,
+		remove,
 		like,
 		likeOne
 	}
