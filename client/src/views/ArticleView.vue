@@ -7,7 +7,9 @@
 
 	import { BaseLink, BaseLoader } from '../components/base'
 	import TheArticleImage from '../components/article/TheArticleImage.vue'
-	import TheArticleContent from '../components/article/TheArticleContent.vue'
+	import TheArticleAuthor from '../components/article/TheArticleAuthor.vue'
+	import TheArticleTitle from '../components/article/TheArticleTitle.vue'
+	import TheArticleText from '../components/article/TheArticleText.vue'
 
 	const isLoading = ref(false)
 	const isAuth = ref(false)
@@ -41,14 +43,18 @@
 </script>
 
 <template>
-	<div class="grid max-w-2xl gap-4">
+	<div class="grid max-w-2xl gap-4 mx-auto">
 		<BaseLink :url="url" v-if="isAuth">
 			Редактировать
 		</BaseLink>
 		<BaseLoader class="mx-auto my-10" v-if="isLoading" />
-		<section class="grid gap-8" v-if="!isLoading">
+		<section class="grid gap-6" v-if="!isLoading">
 			<TheArticleImage :articleData="articleStore.articleData" />
-			<TheArticleContent />
+			<div class="grid gap-6">
+				<TheArticleAuthor :userData="articleStore.articleData.userId" />
+				<TheArticleTitle />
+			</div>
+			<TheArticleText :text="articleStore.articleData.text" />
 		</section>
 	</div>
 </template>

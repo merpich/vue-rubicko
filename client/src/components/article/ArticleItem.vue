@@ -5,6 +5,8 @@
 	import { useUserStore } from '../../stores/user'
 	import { useArticleStore } from '../../stores/article'
 
+	import ArticleItemTitle from './ArticleItemTitle.vue'
+
 	const props = defineProps({
 		articleData: {
 			type: Object,
@@ -48,7 +50,12 @@
 		<div class="relative pb-[40%]" v-if="src">
 			<img class="absolute top-0 left-0 w-full h-full object-cover" :src="src" alt="">
 		</div>
-		<div class="grid gap-4 px-6 py-4">
+		<ArticleItemTitle
+			:fullName="articleData.userId.fullName"
+			:userName="articleData.userId.userName"
+			:avatarUrl="articleData.userId.avatarUrl"
+		/>
+		<div class="grid gap-4 px-4 py-4 md:px-6">
 			<RouterLink class="text-slate-900 hover:text-blue-600 transition-colors" :to="href">
 				<h3 class="text-xl font-medium">
 					{{ articleData.title }}
