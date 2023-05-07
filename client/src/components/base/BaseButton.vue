@@ -21,7 +21,7 @@
 </script>
 
 <template>
-	<button :class="'px-4 py-1 outline-none font-medium rounded-2xl transition-colors ' + classes">
+	<button :class="'px-4 py-1 outline-none font-medium shadow rounded-2xl transition-colors ' + classes">
 		<slot></slot>
 	</button>
 </template>
