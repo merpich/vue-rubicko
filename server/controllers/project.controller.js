@@ -13,9 +13,9 @@ export const getProject = async (req, res) => {
 				.findOne({ _id: req.params.id })
 				.populate('userId').exec()
 		} else {
-			return res.status(404).json({
-				msg: 'Проект не найден'
-			})
+			project = await ProjectModel
+				.find()
+				.populate('userId').exec()
 		}
 
 		if (project.length < 1 ) {

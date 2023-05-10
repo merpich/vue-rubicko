@@ -7,6 +7,8 @@
 
 	import ArticleItemTitle from './ArticleItemTitle.vue'
 
+	const likes = ref(0)
+
 	const props = defineProps({
 		articleData: {
 			type: Object,
@@ -25,18 +27,23 @@
 	const href = computed(() => `/article/${props.articleData._id}`)
 	const date = computed(() => props.articleData.createdAt.split('T')[0])
 	const text = computed(() => props.articleData.text.split(' ').slice(0, 20).join(' '))
-	const likes = computed(() => props.articleData.liked.length)
 
 	const like = async () => {
 		await articleStore.like(props.articleData._id)
 
 		if (isLiked.value === 'fill-slate-400') {
-			return isLiked.value = 'fill-rose-500'
+			likes.value++
+			isLiked.value = 'fill-rose-500'
+			return
 		}
+
+		likes.value--
 		isLiked.value = 'fill-slate-400'
 	}
 
 	onMounted(() => {
+		likes.value = props.articleData.liked.length
+
 		props.articleData.liked.forEach(user => {
 			if (user === userStore.userData._id) {
 				isLiked.value = 'fill-rose-500'

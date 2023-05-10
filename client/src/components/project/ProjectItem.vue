@@ -4,6 +4,8 @@
 	import { useProjectStore } from '../../stores/project'
 	import { BaseLink } from '../base'
 
+	const likes = ref(0)
+
 	const props = defineProps({
 		data: {
 			type: Object,
@@ -18,18 +20,23 @@
 	const url = computed(() => `/editor/${props.data._id}`)
 	const title = computed(() => props.data.title)
 	const date = computed(() => props.data.createdAt.split('T')[0])
-	const likes = computed(() => props.data.liked.length)
 
 	const like = async () => {
 		await projectStore.like(props.data._id)
 
 		if (isLiked.value === 'fill-slate-400') {
-			return isLiked.value = 'fill-rose-500'
+			isLiked.value = 'fill-rose-500'
+			likes.value++
+			return
 		}
+
 		isLiked.value = 'fill-slate-400'
+		likes.value--
 	}
 
 	onMounted(() => {
+		likes.value = props.data.liked.length
+
 		props.data.liked.forEach(user => {
 			if (user === userStore.userData._id) {
 				isLiked.value = 'fill-rose-500'
