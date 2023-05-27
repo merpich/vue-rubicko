@@ -16,6 +16,8 @@
 		network: ''
 	})
 
+	const successMessage = ref('')
+
 	const userStore = useUserStore()
 
 	const saveData = async () => {
@@ -34,6 +36,13 @@
 		}
 
 		const response = await userStore.update(data)
+
+		if (response.success) {
+			successMessage.value = response.message
+			return
+		} else {
+			successMessage.value = ''
+		}
 
 		Object.keys(errors.value).forEach(msg => errors.value[msg] = '')
 
@@ -56,6 +65,7 @@
 <template>
 	<div class="grid gap-4">
 		<h2 class="text-lg text-slate-900 font-semibold">Данные профиля</h2>
+		<p class="text-green-500" v-if="successMessage">{{ successMessage }}</p>
 		<form class="max-w-xs grid gap-4" method="post" @submit.prevent>
 			<div class="grid">
 				<BaseLabel text="Никнейм" for="userName" />

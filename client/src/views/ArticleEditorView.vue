@@ -20,6 +20,7 @@
 	})
 
 	const isOpen = ref(false)
+	const successMessage = ref('')
 
 	const userStore = useUserStore()
 	const articleStore = useArticleStore()
@@ -42,7 +43,11 @@
 		formData.append('title', articleData.value.title)
 		formData.append('text', articleData.value.text)
 
-		await articleStore.update(articleData.value._id, formData)
+		const response = await articleStore.update(articleData.value._id, formData)
+
+		if (response.success) {
+			successMessage.value = response.message
+		}
 	}
 
 	const fetchData = async () => {
@@ -62,6 +67,7 @@
 <template>
 	<div class="grid gap-8">
 		<h1 class="text-2xl text-slate-900 font-bold">Редактирование статьи</h1>
+		<p class="text-green-500" v-if="successMessage">{{ successMessage }}</p>
 
 		<form class="grid gap-4" method="post" enctype="multipart/form-data" @submit.prevent="updateArtice">
 			<div class="grid max-w-md">

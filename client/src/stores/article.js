@@ -48,6 +48,11 @@ export const useArticleStore = defineStore('post', () => {
 			})
 
 			articleData.value = { ...response.data }
+
+			return {
+				success: true,
+				message: 'Статья успешно обновлена'
+			}
 		} catch (error) {
 
 		}

@@ -79,6 +79,11 @@ export const useUserStore = defineStore('user', () => {
 			})
 
 			Object.assign(userData.value, response.data.data)
+
+			return {
+				success: true,
+				message: 'Профиль успешно обновлен'
+			}
 		} catch (error) {
 			if (error.response) {
 				return error.response.data
