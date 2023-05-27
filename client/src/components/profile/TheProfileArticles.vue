@@ -1,6 +1,6 @@
 <script setup>
 	import { computed } from 'vue'
-	import { useRouter } from 'vue-router'
+	import { useRouter, useRoute } from 'vue-router'
 
 	import { useUserStore } from '../../stores/user'
 	import { useArticleStore } from '../../stores/article'
@@ -10,12 +10,13 @@
 	import ArticleNotFound from '../article/ArticleNotFound.vue'
 
 	const router = useRouter()
+	const route = useRoute()
 
 	const userStore = useUserStore()
 	const articleStore = useArticleStore()
 
 	const articles = computed(() => articleStore.articles.reverse().filter((item, index) => index < 2))
-	const articlesUrl = computed(() => `/${userStore.userData.userName}/articles`)
+	const articlesUrl = computed(() => `/${route.params.username}/articles`)
 
 	const goToArticleEditor = () => {
 		router.push('/article/editor')

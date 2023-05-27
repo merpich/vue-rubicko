@@ -23,7 +23,7 @@
 
 <template>
 	<BaseLoader class="mx-auto" v-if="isLoading" />
-	<div class="grid gap-4 sm:grid-cols-2 " v-if="!isLoading">
+	<div class="grid gap-4 max-w-xl " v-if="!isLoading">
 		<ProjectItem
 			v-for="project in newsStore.projects"
 			:key="project._id"

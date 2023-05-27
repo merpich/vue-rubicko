@@ -1,5 +1,7 @@
 <script setup>
 	import { ref, computed } from 'vue'
+	import { useRoute } from 'vue-router'
+
 	import { useUserStore } from '../../stores/user'
 	import { useProjectStore } from '../../stores/project'
 
@@ -19,9 +21,10 @@
 
 	const userStore = useUserStore()
 	const projectStore = useProjectStore()
+	const route = useRoute()
 
 	const projects = computed(() => projectStore.projects.reverse().filter((item, index) => index < 4))
-	const projectsUrl = computed(() => `/${userStore.userData.userName}/projects`)
+	const projectsUrl = computed(() => `/${route.params.username}/projects`)
 
 	const openModal = () => isOpen.value = true
 	const closeModal = () => isOpen.value = false
