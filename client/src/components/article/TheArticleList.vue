@@ -17,7 +17,7 @@
 
 <template>
 	<ArticleNotFound v-if="articles.length < 1" />
-	<div class="grid md:grid-cols-2 gap-4" v-if="articles.length > 0">
+	<div class="grid max-w-xl gap-4" v-if="articles.length > 0">
 		<ArticleItem
 			v-for="article in articlesFiltered"
 			:key="article._id"

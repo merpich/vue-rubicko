@@ -16,7 +16,8 @@
 		_id: '',
 		title: '',
 		text: '',
-		image: ''
+		image: '',
+		tag: ''
 	})
 
 	const isOpen = ref(false)
@@ -42,6 +43,7 @@
 
 		formData.append('title', articleData.value.title)
 		formData.append('text', articleData.value.text)
+		formData.append('tag', articleData.value.tag)
 
 		const response = await articleStore.update(articleData.value._id, formData)
 
@@ -61,6 +63,7 @@
 		articleData.value._id = articleStore.articleData._id
 		articleData.value.title = articleStore.articleData.title
 		articleData.value.text = articleStore.articleData.text
+		articleData.value.tag = articleStore.articleData.tag
 	})
 </script>
 
@@ -87,6 +90,19 @@
 					:value="articleData.title"
 					v-model="articleData.title"
 				/>
+			</div>
+			<div class="grid max-w-md">
+				<BaseLabel text="Тэг статьи" for="tag" />
+				<select
+					class="py-2 px-4 shadow bg-white rounded-2xl text-base text-slate-900"
+					name="tag"
+					id="tag"
+					v-model="articleData.tag"
+				>
+					<option value="html">html</option>
+					<option value="css">css</option>
+					<option value="javascript">javascript</option>
+				</select>
 			</div>
 			<div class="grid">
 				<BaseLabel text="Содержание статьи" for="content" />

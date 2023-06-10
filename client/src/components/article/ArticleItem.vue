@@ -71,9 +71,12 @@
 			</RouterLink>
 
 			<div class="flex justify-between">
-				<time class="text-slate-900" datetime="2023-04-01">
-					{{ date }}
-				</time>
+				<div class="flex gap-4">
+					<time class="text-slate-900" datetime="2023-04-01">
+						{{ date }}
+					</time>
+					<p class="text-slate-500"># {{ articleData.tag }}</p>
+				</div>
 				<button
 					class="-mx-4 -my-2 py-2 px-4 flex items-center gap-2 hover:bg-slate-200
 						focus-visible:bg-slate-200 transition-colors outline-none rounded-2xl"

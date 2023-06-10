@@ -82,6 +82,10 @@ export const updatePost = async (req, res) => {
 			post.text = req.body.text
 		}
 
+		if (req.body.tag) {
+			post.tag = req.body.tag
+		}
+
 		if (req.file) {
 			post.imageUrl = `/uploads/posts/${req.file.filename}`
 		}

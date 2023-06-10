@@ -49,7 +49,7 @@
 		</BaseLink>
 		<BaseLoader class="mx-auto my-10" v-if="isLoading" />
 		<section class="grid gap-6" v-if="!isLoading">
-			<TheArticleImage :articleData="articleStore.articleData" />
+			<TheArticleImage :articleData="articleStore.articleData" v-if="articleStore.articleData.image" />
 			<div class="grid gap-6">
 				<TheArticleAuthor :userData="articleStore.articleData.userId" />
 				<TheArticleTitle />

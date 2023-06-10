@@ -12,7 +12,8 @@
 	const articleData = ref({
 		title: '',
 		text: '',
-		image: ''
+		image: '',
+		tag: 'html'
 	})
 
 	const articleStore = useArticleStore()
@@ -27,6 +28,7 @@
 
 		formData.append('image', articleData.value.image)
 		formData.append('title', articleData.value.title)
+		formData.append('tag', articleData.value.tag)
 		formData.append('text', articleData.value.text)
 
 		await articleStore.create(formData)
@@ -56,6 +58,19 @@
 					name="title"
 					v-model="articleData.title"
 				/>
+			</div>
+			<div class="grid max-w-md">
+				<BaseLabel text="Тэг статьи" for="tag" />
+				<select
+					class="py-2 px-4 shadow bg-white rounded-2xl text-base text-slate-900"
+					name="tag"
+					id="tag"
+					v-model="articleData.tag"
+				>
+					<option value="html">html</option>
+					<option value="css">css</option>
+					<option value="javascript">javascript</option>
+				</select>
 			</div>
 			<div class="grid">
 				<BaseLabel text="Содержание статьи" for="content" />

@@ -9,6 +9,7 @@
 	const articleStore = useArticleStore()
 
 	const title = computed(() => articleStore.articleData.title)
+	const tag = computed(() => articleStore.articleData.tag)
 	const date = computed(() => articleStore.articleData.createdAt.split('T')[0])
 	const likes = computed(() => articleStore.articleData.liked.length)
 
@@ -33,8 +34,9 @@
 
 <template>
 	<div class="flex justify-between items-start gap-6">
-		<div>
+		<div class="grid gap-2">
 			<h1 class="text-2xl text-slate-900 font-bold">{{ title }}</h1>
+			<p class="text-slate-500"># {{ tag }}</p>
 			<time class="text-slate-900" datetime="2023-04-01">
 				{{ date }}
 			</time>
