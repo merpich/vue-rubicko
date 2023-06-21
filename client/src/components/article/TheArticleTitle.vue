@@ -9,7 +9,7 @@
 	const articleStore = useArticleStore()
 
 	const title = computed(() => articleStore.articleData.title)
-	const tag = computed(() => articleStore.articleData.tag)
+	const tag = computed(() => articleStore.articleData.tagId.title)
 	const date = computed(() => articleStore.articleData.createdAt.split('T')[0])
 	const likes = computed(() => articleStore.articleData.liked.length)
 

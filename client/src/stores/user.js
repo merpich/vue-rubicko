@@ -39,6 +39,7 @@ export const useUserStore = defineStore('user', () => {
 	const logout = () => {
 		localStorage.removeItem('token')
 		userData.value = {}
+		isAuth.value = false
 	}
 
 	 const getMe = async () => {

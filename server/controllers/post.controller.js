@@ -1,4 +1,5 @@
 import PostModel from '../models/post.model.js'
+import TagModel from '../models/tag.model.js'
 
 export const getPost = async (req, res) => {
 	try {
@@ -7,15 +8,21 @@ export const getPost = async (req, res) => {
 		if (req.query.user) {
 			post = await PostModel
 				.find({ userId: req.query.user })
-				.populate('userId').exec()
+				.populate('userId')
+				.populate('tagId')
+				.exec()
 		} else if (req.params.id) {
 			post = await PostModel
 				.findOne({ _id: req.params.id })
-				.populate('userId').exec()
+				.populate('userId')
+				.populate('tagId')
+				.exec()
 		} else {
 			post = await PostModel
 				.find()
-				.populate('userId').exec()
+				.populate('userId')
+				.populate('tagId')
+				.exec()
 		}
 
 		if (post.length < 0) {
@@ -23,15 +30,6 @@ export const getPost = async (req, res) => {
 				message: 'Статьи не найдены'
 			})
 		}
-
-		// const postFiltered = post.map(item => {
-		// 	const data = JSON.parse(JSON.stringify(item))
-
-		// 	delete data.userId.passwordHash
-		// 	delete data.userId.email
-
-		// 	return data
-		// })
 
 		res.status(200).json(post)
 	} catch (error) {
@@ -82,8 +80,8 @@ export const updatePost = async (req, res) => {
 			post.text = req.body.text
 		}
 
-		if (req.body.tag) {
-			post.tag = req.body.tag
+		if (req.body.tagId) {
+			post.tagId = req.body.tagId
 		}
 
 		if (req.file) {

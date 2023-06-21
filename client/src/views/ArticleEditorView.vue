@@ -4,6 +4,7 @@
 
 	import { useUserStore } from '../stores/user'
 	import { useArticleStore } from '../stores/article'
+	import { useTagStore } from '../stores/tag'
 
 	import ArticleModal from '../components/article/ArticleModal.vue'
 
@@ -17,7 +18,7 @@
 		title: '',
 		text: '',
 		image: '',
-		tag: ''
+		tagId: ''
 	})
 
 	const isOpen = ref(false)
@@ -25,6 +26,7 @@
 
 	const userStore = useUserStore()
 	const articleStore = useArticleStore()
+	const tagStore = useTagStore()
 	const route = useRoute()
 
 	const openModal = () => isOpen.value = true
@@ -34,7 +36,7 @@
 		 articleData.value.image = event.target.files[0]
 	}
 
-	const updateArtice = async () => {
+	const updateArticle = async () => {
 		const formData = new FormData()
 
 		if (articleData.value.image) {
@@ -43,7 +45,7 @@
 
 		formData.append('title', articleData.value.title)
 		formData.append('text', articleData.value.text)
-		formData.append('tag', articleData.value.tag)
+		formData.append('tagId', articleData.value.tagId)
 
 		const response = await articleStore.update(articleData.value._id, formData)
 
@@ -55,6 +57,7 @@
 	const fetchData = async () => {
 		await userStore.getMe()
 		await articleStore.getOne(route.params.id)
+		await tagStore.get()
 	}
 
 	onBeforeMount(async () => {
@@ -63,7 +66,7 @@
 		articleData.value._id = articleStore.articleData._id
 		articleData.value.title = articleStore.articleData.title
 		articleData.value.text = articleStore.articleData.text
-		articleData.value.tag = articleStore.articleData.tag
+		articleData.value.tagId = articleStore.articleData.tagId._id
 	})
 </script>
 
@@ -72,7 +75,7 @@
 		<h1 class="text-2xl text-slate-900 font-bold">Редактирование статьи</h1>
 		<p class="text-green-500" v-if="successMessage">{{ successMessage }}</p>
 
-		<form class="grid gap-4" method="post" enctype="multipart/form-data" @submit.prevent="updateArtice">
+		<form class="grid gap-4" method="post" enctype="multipart/form-data" @submit.prevent="updateArticle">
 			<div class="grid max-w-md">
 				<BaseLabel text="Заставка статьи" for="preview" />
 				<BaseFile
@@ -92,16 +95,20 @@
 				/>
 			</div>
 			<div class="grid max-w-md">
-				<BaseLabel text="Тэг статьи" for="tag" />
+				<BaseLabel text="Тег статьи" for="tag" />
 				<select
 					class="py-2 px-4 shadow bg-white rounded-2xl text-base text-slate-900"
 					name="tag"
 					id="tag"
-					v-model="articleData.tag"
+					v-model="articleData.tagId"
 				>
-					<option value="html">html</option>
-					<option value="css">css</option>
-					<option value="javascript">javascript</option>
+					<option
+						v-for="tag in tagStore.tags"
+						:key="tag._id"
+						:value="tag._id"
+					>
+						{{ tag.title }}
+					</option>
 				</select>
 			</div>
 			<div class="grid">

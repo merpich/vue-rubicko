@@ -18,7 +18,7 @@ export const getProject = async (req, res) => {
 				.populate('userId').exec()
 		}
 
-		if (project.length < 1 ) {
+		if (project.length < 0 ) {
 			return res.status(404).json({
 				msg: 'Проекты не найдены'
 			})

@@ -49,8 +49,8 @@
 		<IntroForm method="post" @submit.prevent="register">
 			<IntroFormTitle text="Регистрация" />
 			<div class="grid">
-				<IntroFormLabel text="Имя пользователя" for="text" />
-				<IntroFormInput id="text" name="text" type="text" v-model="data.userName" />
+				<IntroFormLabel text="Никнейм" for="username" />
+				<IntroFormInput id="username" name="username" type="text" v-model="data.userName" />
 				<p class="text-red-500" v-if="errors.userName">{{ errors.userName }}</p>
 			</div>
 			<div class="grid">

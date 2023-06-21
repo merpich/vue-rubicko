@@ -75,7 +75,7 @@
 					<time class="text-slate-900" datetime="2023-04-01">
 						{{ date }}
 					</time>
-					<p class="text-slate-500"># {{ articleData.tag }}</p>
+					<p class="text-slate-500"># {{ articleData.tagId.title }}</p>
 				</div>
 				<button
 					class="-mx-4 -my-2 py-2 px-4 flex items-center gap-2 hover:bg-slate-200
