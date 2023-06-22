@@ -48,7 +48,7 @@
 			Редактировать
 		</BaseLink>
 		<BaseLoader class="mx-auto my-10" v-if="isLoading" />
-		<section class="grid gap-6" v-if="!isLoading">
+		<section class="grid gap-10" v-if="!isLoading">
 			<TheArticleImage :articleData="articleStore.articleData" v-if="articleStore.articleData.imageUrl" />
 			<div class="grid gap-6">
 				<TheArticleAuthor :userData="articleStore.articleData.userId" />

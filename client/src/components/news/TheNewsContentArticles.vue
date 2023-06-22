@@ -16,8 +16,9 @@
 
 			await newsStore.getArticles()
 
+
 			articles.value = route.query.tag
-				? newsStore.articles.filter(article => article.tag === route.query.tag).reverse()
+				? newsStore.articles.filter(article => article.tagId._id === route.query.tag).reverse()
 				: newsStore.articles.reverse()
 
 			isLoading.value = false
