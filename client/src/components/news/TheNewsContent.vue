@@ -8,7 +8,7 @@
 </script>
 
 <template>
-	<div class="grid grid-cols-[4fr_2fr] gap-4 items-start">
+	<div class="grid md:grid-cols-[4fr_2fr] gap-4 items-start">
 		<template v-if="route.query.cat === 'articles'">
 			<TheNewsContentArticles />
 			<TheContentArticlesFilters />
